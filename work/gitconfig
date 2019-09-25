@@ -1,0 +1,9 @@
+[user]
+  name = Troy Mullaney
+  email = troy@clearvoice.com
+[push]
+  default = simple
+[core]
+  editor = vim
+	ignorecase = true
+  excludesfile= /Users/troymullaney/.dotfiles/gitignore

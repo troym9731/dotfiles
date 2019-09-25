@@ -1,0 +1,32 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
+
+- clean: ['~']
+
+- link:
+    ~/.ctags: ctags
+    ~/.tmux.conf: tmux.conf
+    ~/.nvimrc: nvimrc
+    ~/.config/nvim/init.vim: nvimrc
+    ~/.vimrc: vimrc
+    ~/.config/alacritty/alacritty.yml: alacritty.yml
+    /usr/local/bin/:
+      glob: true
+      path: scripts/*
+      relink: true
+
+- shell:
+  - [~/.dotfiles/homebrew/install, "Installing Homebrew and specified packages"]
+  - [~/.dotfiles/asdf/install, "Installing asdf and its associated plugins"]
+  - [~/.dotfiles/macos/set-defaults, "Setting MacOS defaults"]
+  - [~/.dotfiles/vim-plug/install, "Installing vim-plug"]
+  - [~/.dotfiles/vundle/install, "Installing Vundle"]
+  - [mkdir -p ~/.vim/backup, "Creating backup vim directory"]
+  - [yarn global add pure-prompt, "Installing Zsh Pure Prompt"]
+  - [yarn global add prettier, "Installing Prettier"]

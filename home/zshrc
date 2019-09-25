@@ -1,0 +1,152 @@
+###
+# Path
+###
+
+export PATH="/usr/local/mysql/bin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/usr/bin"
+export PATH="$PATH:/bin"
+export PATH="$PATH:/usr/sbin"
+export PATH="$PATH:/usr/sbin"
+export PATH="$PATH:/sbin"
+export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+
+###
+# Zsh Customization
+###
+
+# Git completions
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+
+# Highlight on tab completion selection
+zstyle ':completion:*' menu select
+
+###
+# Init Zsh
+###
+
+fpath=(~/.zsh $fpath)
+autoload -Uz compinit && compinit
+
+###
+# asdf
+###
+
+source $HOME/.asdf/asdf.sh
+
+###
+# Theme
+###
+
+autoload -U promptinit; promptinit
+
+PURE_CMD_MAX_EXEC_TIME=1
+PURE_PROMPT_SYMBOL=λ
+
+zstyle :prompt:pure:git:branch color 252
+
+prompt pure
+
+###
+# Aliases
+###
+
+# Helper function
+# Outputs the name of the current branch
+# Usage example: git pull origin $(git_current_branch)
+# Using '--quiet' with 'symbolic-ref' will not cause a fatal error (128) if
+# it's not a symbolic ref, but in a Git repo.
+function git_current_branch() {
+  local ref
+  ref=$(command git symbolic-ref --quiet HEAD 2> /dev/null)
+  local ret=$?
+  if [[ $ret != 0 ]]; then
+    [[ $ret == 128 ]] && return  # no git repo.
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
+  fi
+  echo ${ref#refs/heads/}
+}
+
+alias ..='cd ..'
+alias ls='ls -G'
+alias la='ls -lAh'
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+alias ggpush='git push origin $(git_current_branch)'
+alias glo='git log --oneline --decorate'
+alias glog='git log --oneline --decorate --graph'
+alias gst='git status'
+alias gstl='git stash list'
+alias gcp='git cherry-pick'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gcm='git checkout master'
+alias gf='git fetch'
+alias gco='git checkout'
+alias v='nvim'
+alias ctags="`brew --prefix`/bin/ctags"
+
+###
+# z
+###
+
+source /usr/local/etc/profile.d/z.sh
+
+###
+# History
+###
+
+# http://zsh.sourceforge.net/Doc/Release/Options.html
+SAVEHIST=2000
+HISTSIZE=2000
+HISTFILE=~/.zsh_history
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt EXTENDED_HISTORY
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+
+###
+# Editor
+###
+
+export EDITOR=vi
+
+# rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Postgres PGDATA environment variable
+export PGDATA=/usr/local/var/postgres
+
+# added by travis gem
+[ -f /Users/Troy/.travis/travis.sh ] && source /Users/Troy/.travis/travis.sh
+
+###
+# FZF
+###
+
+# fzf fuzzy finder awesomeness
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Change the default fzf command to use ripgrep
+export FZF_DEFAULT_COMMAND="rg --hidden --files -g '!.git'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# fs [FUZZY PATTERN] - Select selected tmux session
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fs() {
+  local session
+  session=$(tmux list-sessions -F "#{session_name}" | \
+    fzf --query="$1" --select-1 --exit-0) &&
+  tmux switch-client -t "$session"
+}
+
+# fbr - checkout git branch
+fbr() {
+  local branches branch
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}

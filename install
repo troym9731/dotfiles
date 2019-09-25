@@ -2,7 +2,9 @@
 
 set -e
 
-CONFIG="install.conf.yaml"
+export DOTFILES="$PWD"
+CONFIG="base"
+SUFFIX=".conf.yaml"
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
@@ -12,4 +14,22 @@ cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+case $1 in
+  work)
+    echo "Installing base configuration"
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}${SUFFIX}" "${@:2}"
+
+    echo "Installing work configuration"
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${1}${SUFFIX}" "${@:2}"
+    ;;
+  home)
+    echo "Installing base configuration"
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}${SUFFIX}" "${@:2}"
+
+    echo "Installing home configuration"
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${1}${SUFFIX}" "${@:2}"
+    ;;
+  *)
+    echo "Unknown install option ($0), doing nothing"
+    ;;
+esac
