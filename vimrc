@@ -6,41 +6,46 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
-Plugin 'reedes/vim-thematic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'jisaacks/GitGutter'
-Plugin 'Raimondi/delimitMate'
-Plugin 'tpope/vim-rails'
-Plugin 'othree/yajs.vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'elzr/vim-json'
-Plugin 'mhartington/oceanic-next'
-Plugin 'gavocanov/vim-js-indent'
-Plugin 'moll/vim-node'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'christoomey/vim-tmux-navigator'
 
 call vundle#end()
+
 syntax enable
 filetype plugin indent on
 
 colorscheme elflord
+
+" The next two settings help in performance, especially in ruby files
+" `regexpengine` is set to an old engine that is better at parsing ruby files
+set regexpengine=1
+set lazyredraw
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
 
 """"" Beginning of some mappings for Leader Key
 
 " Map leader to SPACE key
 let mapleader = "\<Space>"
 
-" Map CtrlP to Leader o
-nnoremap <Leader>o :CtrlP<CR>
+" Map fzf.vim ':Files'
+nnoremap <Leader>o :Files<CR>
+
+" Map fzf.vim ':Buffers'
+nnoremap <Leader>b :Buffers<CR>
+
+" Map fzf.vim ':Rg' for file searching
+nnoremap <Leader>l :Rg<CR>
 
 " Toggle NerdTree to Leader e
 nnoremap <Leader>e :NERDTreeToggle<CR>
@@ -82,6 +87,9 @@ set incsearch
 " Set where splits appear (which feels more natural)
 set splitbelow
 set splitright
+
+" Get rid of any styling on the line numbers
+highlight clear CursorLineNR
 
 let g:delimitMate_expand_cr=1
 let g:delimitMate_expand_space=1
