@@ -2,8 +2,9 @@
 
 if test "$(uname)" = "Darwin"
 then
-  if test ! $(which brew 2> /dev/null)
+  if ! $(command -v brew >/dev/null 2>&1)
   then
+    echo "› Install Homebrew"
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 

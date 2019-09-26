@@ -219,7 +219,7 @@ colors:
     red:     '0xff5252'
     green:   '0x5eff5e'
     yellow:  '0xffff61'
-    blue:    '0x6363ff'
+    blue:    '0xabdcff'
     magenta: '0xff73ff'
     cyan:    '0x87ffff'
     white:   '0xffffff'
