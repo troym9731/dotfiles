@@ -5,5 +5,5 @@
   default = simple
 [core]
   editor = vim
-	ignorecase = true
+  ignorecase = true
   excludesfile= /Users/troymullaney/.dotfiles/gitignore

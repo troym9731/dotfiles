@@ -16,11 +16,6 @@
     ~/.config/nvim/init.vim: nvimrc
     ~/.vimrc: vimrc
     ~/.config/alacritty/alacritty.yml: alacritty.yml
-    ~/.zsh/:
-      glob: true
-      path: zsh/*
-    /usr/local/share/zsh/site-functions/async: pure_prompt/async.zsh
-    /usr/local/share/zsh/site-functions/prompt_pure_setup: pure_prompt/pure.zsh
     /usr/local/bin/:
       glob: true
       path: scripts/*
@@ -33,3 +28,10 @@
   - [~/.dotfiles/vundle/install, "Installing Vundle"]
   - [mkdir -p ~/.vim/backup, "Creating backup vim directory"]
   - [~/.dotfiles/yarn_global/install, "Checking for Prettier"]
+
+- link:
+    ~/.zsh/:
+      glob: true
+      path: zsh/*
+    /usr/local/share/zsh/site-functions/async: pure_prompt/async.zsh
+    /usr/local/share/zsh/site-functions/prompt_pure_setup: pure_prompt/pure.zsh
