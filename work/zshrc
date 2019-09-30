@@ -113,7 +113,8 @@ setopt HIST_FIND_NO_DUPS
 # Editor
 ###
 
-export EDITOR=vi
+# For some reason, this breaks Ctrl+A / Ctrl+E within tmux
+# export EDITOR=vi
 
 ###
 # FZF
