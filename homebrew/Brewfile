@@ -32,6 +32,7 @@ brew 'tldr'
 brew 'ripgrep'
 brew 'zsh'
 
+cask 'alacritty'
 cask '1password'
 cask 'firefox'
 cask 'firefoxnightly'
