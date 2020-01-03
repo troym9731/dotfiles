@@ -14,9 +14,9 @@ then
   bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
   # Install a version of Node to allow Yarn to work in other scripts
   echo "› Installing Node with asdf"
-  asdf install nodejs latest
+  asdf install nodejs 10.15.0
   echo "› Setting default Node version"
-  asdf global nodejs latest
+  asdf global nodejs 10.15.0
 
   # Ruby
   echo "› Adding ruby asdf plugin"
