@@ -9,6 +9,7 @@ export PATH="$PATH:/bin"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/sbin"
+export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 
 ###
