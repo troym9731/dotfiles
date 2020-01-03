@@ -6,6 +6,8 @@ then
   # Node
   asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
   bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+  # Install a version of Node to allow Yarn to work in other scripts
+  asdf install nodejs 10.15.0
 
   # Ruby
   asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
