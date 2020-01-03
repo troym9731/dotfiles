@@ -22,6 +22,7 @@
 
 - shell:
   - [~/.dotfiles/homebrew/install, "Installing / Updating Homebrew and specified packages"]
+  - [~/.dotfiles/yarn/install, "Installing yarn"]
   - [~/.dotfiles/asdf/install, "Installing asdf and its associated plugins"]
   - [~/.dotfiles/macos/set-defaults, "Setting MacOS defaults"]
   - [~/.dotfiles/vim-plug/install, "Installing vim-plug"]
