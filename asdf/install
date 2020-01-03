@@ -3,18 +3,20 @@ if [ ! -d ~/.asdf ]
 then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.4
 
+  # Use absolute paths in case $PATH isn't setup yet
+
   # Node
-  asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  ~/.asdf/bin/asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
   bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
   # Install a version of Node to allow Yarn to work in other scripts
-  asdf install nodejs 10.15.0
+  ~/.asdf/bin/asdf install nodejs 10.15.0
 
   # Ruby
-  asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+  ~/.asdf/bin/asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
 
   # Erlang (required for Elixir)
-  asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+  ~/.asdf/bin/asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
 
   # Elixir
-  asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+  ~/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
 fi
