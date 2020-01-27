@@ -5,3 +5,9 @@ then
   echo "› Installing Prettier with Yarn"
   yarn global add prettier
 fi
+
+if ! $(command -v weigh >/dev/null 2>&1)
+then
+  echo "› Installing Weigh with Yarn"
+  yarn global add weigh
+fi
