@@ -2,7 +2,7 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Keyword completion system: Requires python3 and pip3
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
@@ -90,8 +90,6 @@ nnoremap <leader>= :wincmd =<cr>
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
-" Show relative file paths
-let g:deoplete#file#enable_buffer_path = 1
 " python3 for deoplete even in virtual environments
 let g:python3_host_prog = '/usr/local/bin/python3'
 
