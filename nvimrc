@@ -265,30 +265,6 @@ let g:elm_format_fail_silently = 1
 " Enable code blocks in markdown to be highlighted e.g. ```js
 let g:markdown_fenced_languages = ['html', 'javascript', 'js=javascript', 'ruby', 'css', 'sass']
 
-" Devicons configuration
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-
-" NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-  exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-  exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-
-call NERDTreeHighlightFile('md', 'blue', 'none', '#83AFE5', 'none')
-call NERDTreeHighlightFile('config', 'yellow', 'none', '#DADA93', 'none')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', '#DADA93', 'none')
-call NERDTreeHighlightFile('json', 'green', 'none', '#A8CE93', 'none')
-call NERDTreeHighlightFile('yml', 'green', 'none', '#A8CE93', 'none')
-call NERDTreeHighlightFile('html', 'green', 'none', '#A8CE93', 'none')
-call NERDTreeHighlightFile('css', 'Magenta', 'none', '#D18EC2', 'none')
-call NERDTreeHighlightFile('scss', 'Magenta', 'none', '#D18EC2', 'none')
-" call NERDTreeHighlightFile('js', 'Red', 'none', '#DF8C8C', 'none')
-call NERDTreeHighlightFile('js', 'yellow', 'none', '#DADA93', 'none')
-call NERDTreeHighlightFile('ts', 'Blue', 'none', '#6699cc', 'none')
-call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', 'none')
-call NERDTreeHighlightFile('gitconfig', 'black', 'none', '#1E272C', 'none')
-call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#6A7D89', 'none')
-
 " Prevent Emmet from creating global mappings
 let g:user_emmet_install_global=0
 autocmd FileType html,css,ejs EmmetInstall
