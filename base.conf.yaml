@@ -29,7 +29,6 @@
   - [~/.dotfiles/asdf/install, "Installing asdf and its associated plugins"]
   - [~/.dotfiles/macos/set-defaults, "Setting MacOS defaults"]
   - [~/.dotfiles/vim-plug/install, "Installing vim-plug"]
-  - [~/.dotfiles/vundle/install, "Installing Vundle"]
   - [mkdir -p ~/.vim/backup, "Creating backup vim directory"]
   - [~/.dotfiles/yarn_global/install, "Checking for Prettier"]
 
