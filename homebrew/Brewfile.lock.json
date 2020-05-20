@@ -81,7 +81,10 @@
           }
         }
       },
-      "openssl": null,
+      "openssl": {
+        "version": "1.0.2n",
+        "bottle": null
+      },
       "libyaml": {
         "version": "0.2.2",
         "bottle": {
@@ -108,7 +111,7 @@
         }
       },
       "readline": {
-        "version": "8.0.4",
+        "version": "6.3.8",
         "bottle": {
           "cellar": ":any",
           "prefix": "/usr/local",
@@ -522,7 +525,7 @@
         }
       },
       "1password": {
-        "version": "7.4.1",
+        "version": "6.0.1",
         "options": {
           "full_name": "1password",
           "args": {
@@ -531,7 +534,7 @@
         }
       },
       "firefox": {
-        "version": "71.0",
+        "version": "44.0.0",
         "options": {
           "full_name": "firefox",
           "args": {
@@ -540,7 +543,7 @@
         }
       },
       "google-chrome": {
-        "version": "79.0.3945.88",
+        "version": "latest",
         "options": {
           "full_name": "google-chrome",
           "args": {
@@ -549,7 +552,7 @@
         }
       },
       "slack": {
-        "version": "4.2.0",
+        "version": "2.3.0",
         "options": {
           "full_name": "slack",
           "args": {
@@ -558,7 +561,7 @@
         }
       },
       "alfred": {
-        "version": "4.0.7_1131",
+        "version": "2.8.2_432",
         "options": {
           "full_name": "alfred",
           "args": {
@@ -567,7 +570,7 @@
         }
       },
       "bettertouchtool": {
-        "version": "3.214",
+        "version": "1.55",
         "options": {
           "full_name": "bettertouchtool",
           "args": {
@@ -603,7 +606,7 @@
         }
       },
       "discord": {
-        "version": "0.0.255",
+        "version": "0.0.250",
         "options": {
           "full_name": "discord",
           "args": {
@@ -618,9 +621,9 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.2.12",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "532d291010390927bc1918ce9c368ed19f4c469e",
-        "CLT": "1103.0.32.59",
-        "Xcode": "11.4",
+        "Homebrew/homebrew-core": "72ece2f1ab9d29eb936de51e68f998de3ee81106",
+        "CLT": "11.4.1.0.1.1586360307",
+        "Xcode": "11.4.1",
         "macOS": "10.15.4"
       }
     }
