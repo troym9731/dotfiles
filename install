@@ -16,18 +16,18 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 
 case $1 in
   work)
-    echo "Installing base configuration"
-    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}${SUFFIX}" "${@:2}"
-
     echo "Installing work configuration"
     "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${1}${SUFFIX}" "${@:2}"
-    ;;
-  home)
+
     echo "Installing base configuration"
     "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}${SUFFIX}" "${@:2}"
-
+    ;;
+  home)
     echo "Installing home configuration"
     "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${1}${SUFFIX}" "${@:2}"
+
+    echo "Installing base configuration"
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}${SUFFIX}" "${@:2}"
     ;;
   *)
     echo "Unknown install option ($0), doing nothing"
