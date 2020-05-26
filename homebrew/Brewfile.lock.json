@@ -606,6 +606,15 @@
             "appdir": "/Applications"
           }
         }
+      },
+      "visual-studio-code": {
+        "version": "1.45.1",
+        "options": {
+          "full_name": "visual-studio-code",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
       }
     }
   },
@@ -614,7 +623,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.2.17",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "ab65a1eaed9229404e83bd4a65b7672c3863f1ce",
+        "Homebrew/homebrew-core": "70c7eaf49dac4638bf1bcdf8c16fe5e26e73f27b",
         "CLT": "11.0.0.0.1.1567737322",
         "Xcode": "11.4.1",
         "macOS": "10.15.4"
