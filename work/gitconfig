@@ -7,3 +7,5 @@
   editor = vim
   ignorecase = true
   excludesfile= /Users/troymullaney/.dotfiles/gitignore
+[init]
+	defaultBranch = main
