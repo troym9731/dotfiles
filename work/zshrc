@@ -85,6 +85,11 @@ alias gds='git diff --staged'
 alias gcm='git checkout master'
 alias gf='git fetch'
 alias gco='git checkout'
+alias ghprr='gh search prs --review-requested=@me --state=open --repo=ClearVoice/clearvoice'
+alias ghprb='gh search prs --reviewed-by=@me --state=open --repo=ClearVoice/clearvoice'
+alias ghprvw='gh pr view --web'
+alias ghprme='gh search prs --author=@me --state=open --repo=ClearVoice/clearvoice'
+alias ghieaddme='gh issue edit --add-assignee @me'
 alias v='nvim'
 alias ctags="`brew --prefix`/bin/ctags"
 
