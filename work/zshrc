@@ -92,6 +92,7 @@ alias ghprme='gh search prs --author=@me --state=open --repo=ClearVoice/clearvoi
 alias ghieaddme='gh issue edit --add-assignee @me'
 alias v='nvim'
 alias ctags="`brew --prefix`/bin/ctags"
+alias av='aws-vault'
 
 ###
 # z
