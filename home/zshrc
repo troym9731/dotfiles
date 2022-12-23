@@ -87,6 +87,8 @@ alias gf='git fetch'
 alias gco='git checkout'
 alias v='nvim'
 alias ctags="`brew --prefix`/bin/ctags"
+alias av='aws-vault'
+alias vd='date +"v%y.%m.%d"'
 
 ###
 # z

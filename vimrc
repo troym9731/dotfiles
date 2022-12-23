@@ -17,8 +17,6 @@ call plug#end()
 syntax enable
 filetype plugin indent on
 
-colorscheme elflord
-
 " The next two settings help in performance, especially in ruby files
 " `regexpengine` is set to an old engine that is better at parsing ruby files
 set regexpengine=1
