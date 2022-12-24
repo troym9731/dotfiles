@@ -15,8 +15,9 @@
 - link:
     ~/.ctags: ctags
     ~/.tmux.conf: tmux.conf
-    ~/.nvimrc: nvimrc
-    ~/.config/nvim/init.vim: nvimrc
+    ~/.config/nvim/:
+      glob: true
+      path: nvim/*
     ~/.vimrc: vimrc
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     /usr/local/bin/:
@@ -25,12 +26,14 @@
 
 - shell:
   - [~/.dotfiles/homebrew/install, "Installing / Updating Homebrew and specified packages"]
+  - [~/.dotfiles/fzf/install, "Adding fzf keybinds"]
   - [~/.dotfiles/yarn/install, "Installing yarn"]
   - [~/.dotfiles/asdf/install, "Installing asdf and its associated plugins"]
   - [~/.dotfiles/macos/set-defaults, "Setting MacOS defaults"]
+  - [~/.dotfiles/packer/install, "Installing packer.nvim"]
   - [~/.dotfiles/vim-plug/install, "Installing vim-plug"]
   - [mkdir -p ~/.vim/backup, "Creating backup vim directory"]
-  - [~/.dotfiles/yarn_global/install, "Checking for Prettier"]
+  - [~/.dotfiles/yarn_global/install, "Installing Yarn global packages"]
 
 - link:
     ~/.zsh/:

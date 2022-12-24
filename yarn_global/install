@@ -12,7 +12,7 @@ then
   yarn global add weigh
 fi
 
-if ! $(command -v http-servier >/dev/null 2>&1)
+if ! $(command -v http-server >/dev/null 2>&1)
 then
   echo "› Installing http-server with Yarn"
   yarn global add http-server

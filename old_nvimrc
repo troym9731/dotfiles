@@ -60,7 +60,7 @@ Plug 'mattn/emmet-vim'
 Plug 'ryanoasis/vim-devicons'
 
 " Search functionality
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 
 " Vim related features for fzf
 Plug 'junegunn/fzf.vim'
