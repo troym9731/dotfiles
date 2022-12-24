@@ -5,7 +5,7 @@ endfunction
 call plug#begin('~/.config/nvim/plugged')
 
 " Keyword completion system: Requires python3 and pip3
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+" Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 " Airline at the bottom of Vim
 Plug 'bling/vim-airline'
@@ -91,7 +91,7 @@ nnoremap <leader>= :wincmd =<cr>
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 " python3 for deoplete even in virtual environments
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/opt/homebrew/bin/python3'
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"

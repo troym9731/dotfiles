@@ -12,6 +12,8 @@ export PATH="$PATH:/sbin"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 export PATH="$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin"
+# Homebrew wants this for adding it to the PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ###
 # Zsh Customization
@@ -94,7 +96,7 @@ alias vd='date +"v%y.%m.%d"'
 # z
 ###
 
-source /usr/local/etc/profile.d/z.sh
+source /opt/homebrew/etc/profile.d/z.sh
 
 ###
 # History
