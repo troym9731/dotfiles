@@ -101,7 +101,7 @@ alias vd='date +"v%y.%m.%d"'
 # z
 ###
 
-source /usr/local/etc/profile.d/z.sh
+source /opt/homebrew/etc/profile.d/z.sh
 
 ###
 # History
