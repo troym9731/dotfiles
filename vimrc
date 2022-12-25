@@ -99,8 +99,8 @@ let g:markdown_fenced_languages = ['html', 'javascript', 'js=javascript', 'ruby'
 " Not sure why yet, but this is necessary to use `crontab`
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
+set noswapfile
+set nobackup nowritebackup
 set undodir=~/.vim/undo//
 set undofile
 set undolevels=1000
