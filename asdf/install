@@ -6,6 +6,9 @@ then
   # Source the `asdf` script to allow usage of `asdf`
   echo "› Sourcing ~/.asdf/asdf.sh"
   source ~/.asdf/asdf.sh
+  
+  echo "› Running update for `asdf`"
+  asdf update
 
   # Node
   echo "› Adding nodejs asdf plugin"
@@ -14,9 +17,9 @@ then
   bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
   # Install a version of Node to allow Yarn to work in other scripts
   echo "› Installing Node with asdf"
-  asdf install nodejs 16.13.0
+  asdf install nodejs 18.12.1
   echo "› Setting default Node version"
-  asdf global nodejs 16.13.0
+  asdf global nodejs 18.12.1
 
   # Ruby
   echo "› Adding ruby asdf plugin"
