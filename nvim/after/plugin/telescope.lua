@@ -1,3 +1,5 @@
+local fb = require('telescope').extensions.file_browser
+
 require('telescope').setup {
   defaults = {
     layout_config = {prompt_position = 'top'},
@@ -6,6 +8,20 @@ require('telescope').setup {
   extensions = {
     file_browser = {
       grouped = true,
+      mappings = {
+        ['i'] = {
+          ['<C-a>'] = fb.actions.create,
+          ['<C-r>'] = fb.actions.rename,
+          ['<C-b>'] = fb.actions.copy,
+          ['<C-z>'] = fb.actions.remove,
+        },
+        ['n'] = {
+          ['<C-a>'] = fb.actions.create,
+          ['<C-r>'] = fb.actions.rename,
+          ['<C-b>'] = fb.actions.copy,
+          ['<C-z>'] = fb.actions.remove,
+        },
+      },
     }
   }
 }
@@ -14,7 +30,6 @@ require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
 
 local builtin = require('telescope.builtin')
-local fb = require('telescope').extensions.file_browser
 vim.keymap.set('n', '<leader>o', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>l', builtin.live_grep, {})
