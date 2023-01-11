@@ -118,8 +118,7 @@ setopt HIST_FIND_NO_DUPS
 # Editor
 ###
 
-# For some reason, this breaks Ctrl+A / Ctrl+E within tmux
-# export EDITOR=vi
+export EDITOR=vi
 
 # Postgres PGDATA environment variable
 export PGDATA=/usr/local/var/postgres
