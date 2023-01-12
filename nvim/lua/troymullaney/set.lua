@@ -31,3 +31,6 @@ vim.wo.signcolumn = "yes"
 
 vim.o.splitbelow = true
 vim.o.splitright = true
+
+vim.o.cursorline = true
+vim.o.cursorlineopt = "number"

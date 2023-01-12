@@ -53,7 +53,7 @@ null_ls.setup({
 				"markdown.mdx",
 				"graphql",
 				"handlebars",
-				-- "ruby",
+				"ruby",
 			},
 		}),
 	},

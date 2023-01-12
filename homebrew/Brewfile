@@ -30,6 +30,7 @@ brew 'ctags'
 brew 'tldr'
 brew 'tree'
 brew 'ripgrep'
+brew 'fd'
 brew 'zsh'
 
 cask 'aws-vault'

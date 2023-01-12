@@ -120,6 +120,12 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_FIND_NO_DUPS
 
 ###
+# Setting for ctrl-a and ctrl-e
+###
+
+bindkey -e
+
+###
 # Editor
 ###
 
