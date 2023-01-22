@@ -33,6 +33,7 @@ local async_formatting = function(bufnr)
 end
 
 null_ls.setup({
+	debug = true,
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettierd.with({
@@ -58,32 +59,15 @@ null_ls.setup({
 		}),
 	},
 	on_attach = function(client, bufnr)
-		local sync_clients = { "sumneko_lua" }
 		if client.supports_method("textDocument/formatting") then
 			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			-- Lua formatting is too fast for async
-			-- if vim.bo.filetype == "lua" then
-			vim.api.nvim_create_autocmd("BufWritePre", {
+			vim.api.nvim_create_autocmd("BufWritePost", {
 				group = augroup,
 				buffer = bufnr,
 				callback = function()
-					vim.lsp.buf.format({
-						bufnr = bufnr,
-						filter = function(client)
-							return client.name == "null-ls"
-						end,
-					})
+					async_formatting(bufnr)
 				end,
 			})
-			-- else
-			-- vim.api.nvim_create_autocmd("BufWritePost", {
-			-- 	group = augroup,
-			-- 	buffer = bufnr,
-			-- 	callback = function()
-			-- 		async_formatting(bufnr)
-			-- 	end,
-			-- })
-			-- end
 		end
 	end,
 })
