@@ -1,29 +1,31 @@
 local fb = require("telescope").extensions.file_browser
 
 require("telescope").setup({
-  defaults = {
-    layout_config = { prompt_position = "top" },
-    sorting_strategy = "ascending",
-  },
-  extensions = {
-    file_browser = {
-      grouped = true,
-      mappings = {
-        ["i"] = {
-          ["<C-a>"] = fb.actions.create,
-          ["<C-r>"] = fb.actions.rename,
-          ["<C-b>"] = fb.actions.copy,
-          ["<C-z>"] = fb.actions.remove,
-        },
-        ["n"] = {
-          ["<C-a>"] = fb.actions.create,
-          ["<C-r>"] = fb.actions.rename,
-          ["<C-b>"] = fb.actions.copy,
-          ["<C-z>"] = fb.actions.remove,
-        },
-      },
-    },
-  },
+	defaults = {
+		layout_config = { prompt_position = "top" },
+		sorting_strategy = "ascending",
+	},
+	extensions = {
+		file_browser = {
+			grouped = true,
+			mappings = {
+				["i"] = {
+					["<C-a>"] = fb.actions.create,
+					["<C-r>"] = fb.actions.rename,
+					["<C-b>"] = fb.actions.copy,
+					["<C-z>"] = fb.actions.remove,
+					["<C-y>"] = fb.actions.sort_by_date,
+				},
+				["n"] = {
+					["<C-a>"] = fb.actions.create,
+					["<C-r>"] = fb.actions.rename,
+					["<C-b>"] = fb.actions.copy,
+					["<C-z>"] = fb.actions.remove,
+					["<C-y>"] = fb.actions.sort_by_date,
+				},
+			},
+		},
+	},
 })
 
 require("telescope").load_extension("fzf")
