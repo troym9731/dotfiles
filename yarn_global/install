@@ -29,3 +29,9 @@ then
   echo "› Installing elm-test with Yarn"
   yarn global add elm-test
 fi
+
+if ! $(command -v eslint_d >/dev/null 2>&1)
+then
+  echo "› Installing eslint_d with Yarn"
+  yarn global add eslint_d
+fi

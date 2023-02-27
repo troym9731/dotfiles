@@ -4,7 +4,7 @@ lsp.preset("recommended")
 lsp.ensure_installed({
 	"tsserver",
 	"eslint",
-	"sumneko_lua",
+	"lua_ls",
 	"solargraph",
 })
 
@@ -27,6 +27,7 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+	vim.keymap.set("n", "M", vim.diagnostic.open_float, opts)
 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
 	vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
@@ -34,7 +35,7 @@ end)
 
 lsp.setup()
 
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
 	settings = {
 		Lua = {
 			format = {
@@ -55,6 +56,13 @@ require("lspconfig").solargraph.setup({
 
 require("lspconfig").eslint.setup({
 	format = false,
+})
+
+require("lspconfig").tsserver.setup({
+	on_attach = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
+	end,
 })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

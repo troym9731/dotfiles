@@ -33,9 +33,16 @@ local async_formatting = function(bufnr)
 end
 
 null_ls.setup({
-	debug = true,
 	sources = {
 		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.eslint_d.with({
+			filetypes = {
+				"javascript",
+				"javascriptreact",
+				"typescript",
+				"typescriptreact",
+			},
+		}),
 		null_ls.builtins.formatting.prettierd.with({
 			filetypes = {
 				"javascript",
