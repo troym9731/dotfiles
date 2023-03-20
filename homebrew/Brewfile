@@ -15,6 +15,8 @@ brew 'qt'
 tap 'hashicorp/tap'
 
 brew 'awscli'
+# `cat` alternative
+brew 'bat'
 brew 'cloc'
 brew 'ctags'
 # `find` alternative
