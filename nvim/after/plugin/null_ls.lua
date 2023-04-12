@@ -34,7 +34,6 @@ end
 
 null_ls.setup({
 	sources = {
-		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.eslint_d.with({
 			filetypes = {
 				"javascript",
@@ -43,6 +42,7 @@ null_ls.setup({
 				"typescriptreact",
 			},
 		}),
+		null_ls.builtins.formatting.mix,
 		null_ls.builtins.formatting.prettierd.with({
 			filetypes = {
 				"javascript",
@@ -64,6 +64,7 @@ null_ls.setup({
 				"ruby",
 			},
 		}),
+		null_ls.builtins.formatting.stylua,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
