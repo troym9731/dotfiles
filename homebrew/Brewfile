@@ -13,10 +13,12 @@ brew 'unixodbc'
 brew 'qt'
 
 tap 'hashicorp/tap'
+tap 'oven-sh/bun'
 
 brew 'awscli'
 # `cat` alternative
 brew 'bat'
+brew 'bun'
 brew 'cloc'
 brew 'ctags'
 # `find` alternative
@@ -32,6 +34,7 @@ brew 'jq'
 brew 'neovim'
 brew 'fsouza/prettierd/prettierd'
 brew 'reattach-to-user-namespace'
+brew 'redis'
 brew 'ripgrep'
 brew 'hashicorp/tap/terraform'
 brew 'tldr'

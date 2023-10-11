@@ -8,7 +8,7 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.0",
+		-- tag = "0.1.0",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
@@ -20,7 +20,7 @@ return require("packer").startup(function(use)
 	use("nvim-tree/nvim-web-devicons")
 	use({ "ibhagwan/fzf-lua", requires = { "nvim-tree/nvim-web-devicons" } })
 	use("christoomey/vim-tmux-navigator")
-	use("lukoshkin/trailing-whitespace")
+	use("lukoshkin/highlight-whitespace")
 	use("mbbill/undotree")
 	use("tpope/vim-projectionist")
 	use("tpope/vim-surround")

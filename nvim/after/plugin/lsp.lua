@@ -35,6 +35,12 @@ end)
 
 lsp.setup()
 
+require("lspconfig").html.setup({
+	init_options = {
+		provideFormatter = false,
+	},
+})
+
 require("lspconfig").lua_ls.setup({
 	settings = {
 		Lua = {
@@ -56,6 +62,12 @@ require("lspconfig").solargraph.setup({
 
 require("lspconfig").eslint.setup({
 	format = false,
+})
+
+require("lspconfig").jsonls.setup({
+	init_options = {
+		provideFormatter = false,
+	},
 })
 
 require("lspconfig").tsserver.setup({

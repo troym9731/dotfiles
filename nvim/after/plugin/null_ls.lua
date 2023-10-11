@@ -34,6 +34,8 @@ end
 
 null_ls.setup({
 	sources = {
+		null_ls.builtins.formatting.elm_format,
+		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.eslint_d.with({
 			filetypes = {
 				"javascript",
@@ -43,6 +45,11 @@ null_ls.setup({
 			},
 		}),
 		null_ls.builtins.formatting.mix,
+		null_ls.builtins.formatting.prettier.with({
+			filetypes = {
+				"html",
+			},
+		}),
 		null_ls.builtins.formatting.prettierd.with({
 			filetypes = {
 				"javascript",
@@ -53,7 +60,6 @@ null_ls.setup({
 				"css",
 				"scss",
 				"less",
-				"html",
 				"json",
 				"jsonc",
 				"yaml",
