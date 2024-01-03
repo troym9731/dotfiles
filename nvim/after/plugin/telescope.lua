@@ -28,6 +28,7 @@ require("telescope").setup({
 
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension("harpoon")
 
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>b", builtin.buffers, {})
@@ -52,3 +53,5 @@ vim.keymap.set("n", "<leader>g", function()
 end, {})
 -- Open telescope-file-browser from within the folder of the current buffer
 vim.keymap.set("n", "<leader>t", ":Telescope file_browser path=%:p:h<CR>")
+-- Open Harpoon marks
+vim.keymap.set("n", "<leader>h", ":Telescope harpoon marks<CR>")

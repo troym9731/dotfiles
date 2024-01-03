@@ -19,7 +19,7 @@
       glob: true
       path: nvim/*
     ~/.vimrc: vimrc
-    ~/.config/alacritty/alacritty.yml: alacritty.yml
+    ~/.config/alacritty/alacritty.toml: alacritty.toml
     /usr/local/bin/:
       glob: true
       path: scripts/*

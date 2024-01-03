@@ -8,11 +8,11 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use({
 		"nvim-telescope/telescope.nvim",
-		-- tag = "0.1.0",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use("nvim-telescope/telescope-file-browser.nvim")
+	use("ThePrimeagen/harpoon")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("RRethy/nvim-treesitter-endwise")
 	use("EdenEast/nightfox.nvim")
