@@ -1,37 +1,6 @@
+import = ["~/.config/alacritty/catppuccin-mocha.toml"]
 live_config_reload = true
 working_directory = "None"
-
-[colors]
-draw_bold_text_with_bright_colors = false
-indexed_colors = []
-
-[colors.bright]
-black = "0xb8b8b8"
-blue = "0xabdcff"
-cyan = "0x87ffff"
-green = "0x5eff5e"
-magenta = "0xff73ff"
-red = "0xff5252"
-white = "0xffffff"
-yellow = "0xffff61"
-
-[colors.cursor]
-cursor = "0xffffff"
-text = "0x000000"
-
-[colors.normal]
-black = "0x8c8c8c"
-blue = "0x76c4fa"
-cyan = "0x52c4e3"
-green = "0xaae6a3"
-magenta = "0xffb3e2"
-red = "0xec675e"
-white = "0xeff0eb"
-yellow = "0xf2f263"
-
-[colors.primary]
-background = "0x282a35"
-foreground = "0xeff0eb"
 
 [cursor]
 style = "Block"
@@ -54,6 +23,10 @@ x = 0
 y = 0
 
 [font.normal]
+family = "Hasklug Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
 family = "Hasklug Nerd Font Mono"
 style = "Regular"
 
@@ -622,3 +595,4 @@ lines = 0
 [window.padding]
 x = 0
 y = 0
+

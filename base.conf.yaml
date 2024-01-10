@@ -7,36 +7,46 @@
       stdout: true
       stderr: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - shell:
-  - [mkdir -p /usr/local/bin, "Creating /usr/local/bin if it does not exist"]
+    - [mkdir -p /usr/local/bin, "Creating /usr/local/bin if it does not exist"]
 
 - link:
     ~/.ctags: ctags
-    ~/.tmux.conf: tmux.conf
+    ~/.tmux.conf: tmux/tmux.conf
+    ~/.tmux/plugins/:
+      glob: true
+      path: tmux/plugins/*
     ~/.config/nvim/:
       glob: true
       path: nvim/*
     ~/.vimrc: vimrc
-    ~/.config/alacritty/alacritty.toml: alacritty.toml
+    ~/.config/alacritty/:
+      glob: true
+      path: alacritty/*
     /usr/local/bin/:
       glob: true
       path: scripts/*
 
 - shell:
-  - [test -f ~/.tool-versions || touch ~/.tool-versions, "Creating ~/.tool-versions for asdf"]
-  - [~/.dotfiles/homebrew/install, "Installing / Updating Homebrew and specified packages"]
-  - [~/.dotfiles/fzf/install, "Adding fzf keybinds"]
-  - [source ~/.zshrc, "Sourcing zshrc"]
-  - [~/.dotfiles/yarn/install, "Installing yarn"]
-  - [~/.dotfiles/asdf/install, "Installing asdf and its associated plugins"]
-  - [~/.dotfiles/macos/set-defaults, "Setting MacOS defaults"]
-  - [source ~/.zshrc, "Sourcing zshrc"]
-  - [~/.dotfiles/packer/install, "Installing packer.nvim"]
-  - [~/.dotfiles/vim-plug/install, "Installing vim-plug"]
-  - [mkdir -p ~/.vim/backup, "Creating backup vim directory"]
-  - [~/.dotfiles/yarn_global/install, "Installing Yarn global packages"]
+    - [
+        test -f ~/.tool-versions || touch ~/.tool-versions,
+        "Creating ~/.tool-versions for asdf",
+      ]
+    - [
+        ~/.dotfiles/homebrew/install,
+        "Installing / Updating Homebrew and specified packages",
+      ]
+    - [~/.dotfiles/fzf/install, "Adding fzf keybinds"]
+    - [source ~/.zshrc, "Sourcing zshrc"]
+    - [~/.dotfiles/yarn/install, "Installing yarn"]
+    - [~/.dotfiles/asdf/install, "Installing asdf and its associated plugins"]
+    - [~/.dotfiles/macos/set-defaults, "Setting MacOS defaults"]
+    - [source ~/.zshrc, "Sourcing zshrc"]
+    - [~/.dotfiles/vim-plug/install, "Installing vim-plug"]
+    - [mkdir -p ~/.vim/backup, "Creating backup vim directory"]
+    - [~/.dotfiles/yarn_global/install, "Installing Yarn global packages"]
 
 - link:
     ~/.zsh/:

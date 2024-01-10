@@ -48,7 +48,7 @@ PURE_CMD_MAX_EXEC_TIME=1
 PURE_PROMPT_SYMBOL=λ
 
 zstyle :prompt:pure:git:branch color 252
-zstyle :prompt:pure:prompt:success color magenta
+zstyle :prompt:pure:prompt:success color yellow
 
 prompt pure
 
