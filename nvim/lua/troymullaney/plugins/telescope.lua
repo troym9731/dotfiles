@@ -52,6 +52,7 @@ return {
 			vim.keymap.set("n", "<leader>b", builtin.buffers, {})
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 			vim.keymap.set("n", "<leader>e", fb.file_browser, {})
+			vim.keymap.set("n", "<leader>fj", builtin.git_status, {})
 			vim.keymap.set("n", "<leader>ff", function()
 				builtin.find_files({
 					find_command = {
