@@ -15,9 +15,6 @@
 - link:
     ~/.ctags: ctags
     ~/.tmux.conf: tmux/tmux.conf
-    ~/.tmux/plugins/:
-      glob: true
-      path: tmux/plugins/*
     ~/.config/nvim/:
       glob: true
       path: nvim/*

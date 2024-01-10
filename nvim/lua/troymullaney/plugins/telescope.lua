@@ -1,22 +1,38 @@
 return {
 	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		build = "make",
+		config = function()
+			require("telescope").load_extension("fzf")
+		end,
+	},
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			require("telescope").load_extension("file_browser")
+		end,
+	},
+	{
+		"ThePrimeagen/harpoon",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			require("harpoon").setup()
+			require("telescope").load_extension("harpoon")
+
+			local harpoon = require("harpoon.mark")
+			local uiharpoon = require("harpoon.ui")
+
+			vim.keymap.set("n", "<leader>ma", harpoon.add_file, {})
+			vim.keymap.set("n", "<leader>mr", harpoon.rm_file, {})
+			vim.keymap.set("n", "<leader>n", uiharpoon.nav_next, {})
+			vim.keymap.set("n", "<leader>N", uiharpoon.nav_prev, {})
+		end,
+	},
+	{
 		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				config = function()
-					require("telescope").load_extension("fzf")
-				end,
-			},
-			{
-				"nvim-telescope/telescope-file-browser.nvim",
-				config = function()
-					require("telescope").load_extension("file_browser")
-				end,
-			},
-		},
+		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local fb = require("telescope").extensions.file_browser
 
@@ -45,8 +61,6 @@ return {
 					},
 				},
 			})
-
-			require("telescope").load_extension("harpoon")
 
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>b", builtin.buffers, {})
