@@ -3,23 +3,16 @@ return {
 		"nvim-telescope/telescope-fzf-native.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		build = "make",
-		config = function()
-			require("telescope").load_extension("fzf")
-		end,
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-		config = function()
-			require("telescope").load_extension("file_browser")
-		end,
 	},
 	{
 		"ThePrimeagen/harpoon",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 		config = function()
 			require("harpoon").setup()
-			require("telescope").load_extension("harpoon")
 
 			local harpoon = require("harpoon.mark")
 			local uiharpoon = require("harpoon.ui")
@@ -61,6 +54,10 @@ return {
 					},
 				},
 			})
+
+			require("telescope").load_extension("fzf")
+			require("telescope").load_extension("file_browser")
+			require("telescope").load_extension("harpoon")
 
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>b", builtin.buffers, {})
