@@ -1,22 +1,3 @@
--- If I ever need fzf-lua again for performance
--- return {
--- 	{
--- 		"ibhagwan/fzf-lua",
--- 		dependencies = { "nvim-tree/nvim-web-devicons" },
--- 		config = function()
--- 			local fzf = require("fzf-lua")
--- 			fzf.setup({
--- 				winopts = {
--- 					height = 0.90,
--- 					width = 0.90,
--- 				},
--- 			})
--- 			vim.keymap.set("n", "<leader>o", fzf.files, {})
--- 			vim.keymap.set("n", "<leader>l", fzf.live_grep, {})
--- 		end,
--- 	},
--- }
-
 return {
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
@@ -109,3 +90,21 @@ return {
 		end,
 	},
 }
+-- If I ever need fzf-lua again for performance
+-- return {
+-- 	{
+-- 		"ibhagwan/fzf-lua",
+-- 		dependencies = { "nvim-tree/nvim-web-devicons" },
+-- 		config = function()
+-- 			local fzf = require("fzf-lua")
+-- 			fzf.setup({
+-- 				winopts = {
+-- 					height = 0.90,
+-- 					width = 0.90,
+-- 				},
+-- 			})
+-- 			vim.keymap.set("n", "<leader>o", fzf.files, {})
+-- 			vim.keymap.set("n", "<leader>l", fzf.live_grep, {})
+-- 		end,
+-- 	},
+-- }
