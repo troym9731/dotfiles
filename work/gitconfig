@@ -9,3 +9,5 @@
   excludesfile = /Users/troymullaney/.dotfiles/gitignore
 [init]
 	defaultBranch = main
+[credential]
+	helper = osxkeychain

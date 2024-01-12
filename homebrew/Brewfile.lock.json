@@ -1774,7 +1774,7 @@
         }
       },
       "slack": {
-        "version": "4.36.136",
+        "version": "4.36.138",
         "options": {
           "full_name": "slack",
           "args": {
@@ -1867,6 +1867,24 @@
         "version": "0.75",
         "options": {
           "full_name": "rectangle",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "aerospace": {
+        "version": "0.7.1-Beta",
+        "options": {
+          "full_name": "nikitabobko/tap/aerospace",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "obsidian": {
+        "version": "1.5.3",
+        "options": {
+          "full_name": "obsidian",
           "args": {
             "appdir": "/Applications"
           }
