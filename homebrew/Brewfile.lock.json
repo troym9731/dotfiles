@@ -1352,7 +1352,7 @@
         }
       },
       "hashicorp/tap/terraform": {
-        "version": "1.6.1",
+        "version": "1.5.7",
         "bottle": false
       },
       "gh": {
@@ -1732,7 +1732,7 @@
         }
       },
       "bun": {
-        "version": "1.0.22",
+        "version": "1.0.23",
         "bottle": false
       },
       "powerlevel10k": {
@@ -2001,10 +2001,10 @@
     },
     "tap": {
       "hashicorp/tap": {
-        "revision": "022652f772ca9d6151fdc02e13f34ba016b750f0"
+        "revision": "623fe531779e831ab2feb099416b6ec2143d979c"
       },
       "oven-sh/bun": {
-        "revision": "5146118ce7431f38998e631ceb974f842f9f1104"
+        "revision": "95104e636fba7c83a22c6e7ea69d8888ffbcd342"
       }
     }
   },
@@ -2043,7 +2043,7 @@
         "macOS": "13.5.2"
       },
       "sonoma": {
-        "HOMEBREW_VERSION": "4.2.3",
+        "HOMEBREW_VERSION": "4.2.4",
         "HOMEBREW_PREFIX": "/opt/homebrew",
         "Homebrew/homebrew-core": "api",
         "CLT": "15.1.0.0.1.1700200546",

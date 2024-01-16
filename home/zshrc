@@ -144,5 +144,7 @@ eval "$(zoxide init zsh)"
 export FZF_DEFAULT_COMMAND="rg --hidden --files -g '!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+export PRETTIERD_LOCAL_PRETTIER_ONLY=true
+
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/p10k.zsh.
 [[ ! -f ~/.dotfiles/zsh/p10k.zsh ]] || source ~/.dotfiles/zsh/p10k.zsh
