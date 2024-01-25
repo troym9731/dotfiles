@@ -6,13 +6,13 @@ vim.keymap.set("n", "<leader>P", '"+P')
 vim.keymap.set("v", "<leader>p", '"+p')
 vim.keymap.set("v", "<leader>P", '"+P')
 
-vim.keymap.set("n", "<leader>\\", ":vsplit<CR>")
-vim.keymap.set("n", "<leader>-", ":split<CR>")
-vim.keymap.set("n", "<leader>d", ":close<CR>")
-vim.keymap.set("n", "<leader>s", ":b#<CR>")
+vim.keymap.set("n", "<leader>\\", ":vsplit<CR>", { silent = true })
+vim.keymap.set("n", "<leader>-", ":split<CR>", { silent = true })
+vim.keymap.set("n", "<leader>d", ":close<CR>", { silent = true })
+vim.keymap.set("n", "<leader>s", ":b#<CR>", { silent = true })
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),

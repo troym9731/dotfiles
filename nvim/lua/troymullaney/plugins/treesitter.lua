@@ -20,6 +20,7 @@ return {
 					"yaml",
 					"toml",
 					"json",
+					"sql",
 				},
 				-- Install parsers synchronously (only applied to `ensure_installed`)
 				sync_install = false,
@@ -28,7 +29,7 @@ return {
 				auto_install = true,
 				indent = {
 					enable = true,
-					disable = { "ruby" },
+					-- disable = { "ruby" },
 				},
 				highlight = {
 					-- `false` will disable the whole extension
