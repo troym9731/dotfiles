@@ -17,10 +17,10 @@ return {
 			local harpoon = require("harpoon.mark")
 			local uiharpoon = require("harpoon.ui")
 
-			vim.keymap.set("n", "<leader>ma", harpoon.add_file, {})
-			vim.keymap.set("n", "<leader>mr", harpoon.rm_file, {})
-			vim.keymap.set("n", "<leader>n", uiharpoon.nav_next, {})
-			vim.keymap.set("n", "<leader>N", uiharpoon.nav_prev, {})
+			vim.keymap.set("n", "<leader>ma", harpoon.add_file, { silent = true })
+			vim.keymap.set("n", "<leader>mr", harpoon.rm_file, { silent = true })
+			vim.keymap.set("n", "<leader>n", uiharpoon.nav_next, { silent = true })
+			vim.keymap.set("n", "<leader>N", uiharpoon.nav_prev, { silent = true })
 		end,
 	},
 	{
@@ -40,13 +40,13 @@ return {
 						mappings = {
 							["i"] = {
 								["<C-a>"] = fb.actions.create,
-								["<C-r>"] = fb.actions.rename,
+								["<C-j>"] = fb.actions.rename,
 								["<C-b>"] = fb.actions.copy,
 								["<C-z>"] = fb.actions.remove,
 							},
 							["n"] = {
 								["<C-a>"] = fb.actions.create,
-								["<C-r>"] = fb.actions.rename,
+								["<C-j>"] = fb.actions.rename,
 								["<C-b>"] = fb.actions.copy,
 								["<C-z>"] = fb.actions.remove,
 							},
@@ -60,12 +60,12 @@ return {
 			require("telescope").load_extension("harpoon")
 
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>b", builtin.buffers, {})
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-			vim.keymap.set("n", "<leader>o", builtin.find_files, {})
-			vim.keymap.set("n", "<leader>l", builtin.live_grep, {})
-			vim.keymap.set("n", "<leader>e", fb.file_browser, {})
-			vim.keymap.set("n", "<leader>fj", builtin.git_status, {})
+			vim.keymap.set("n", "<leader>b", builtin.buffers, { silent = true })
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { silent = true })
+			vim.keymap.set("n", "<leader>o", builtin.find_files, { silent = true })
+			vim.keymap.set("n", "<leader>l", builtin.live_grep, { silent = true })
+			vim.keymap.set("n", "<leader>e", fb.file_browser, { silent = true })
+			vim.keymap.set("n", "<leader>fj", builtin.git_status, { silent = true })
 			vim.keymap.set("n", "<leader>ff", function()
 				builtin.find_files({
 					find_command = {
@@ -79,14 +79,14 @@ return {
 						"!**/.git/**",
 					},
 				})
-			end, {})
+			end, { silent = true })
 			vim.keymap.set("n", "<leader>g", function()
 				fb.file_browser({ respect_gitignore = false })
-			end, {})
+			end, { silent = true })
 			-- Open telescope-file-browser from within the folder of the current buffer
-			vim.keymap.set("n", "<leader>t", ":Telescope file_browser path=%:p:h<CR>")
+			vim.keymap.set("n", "<leader>t", ":Telescope file_browser path=%:p:h<CR>", { silent = true })
 			-- Open Harpoon marks
-			vim.keymap.set("n", "<leader>h", ":Telescope harpoon marks<CR>")
+			vim.keymap.set("n", "<leader>h", ":Telescope harpoon marks<CR>", { silent = true })
 		end,
 	},
 }
