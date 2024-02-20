@@ -74,6 +74,7 @@ function git_current_branch() {
 }
 
 alias ..='cd ..'
+alias clear='printf "\033[H\033[2J"'
 alias ls='ls -G'
 alias la='ls -lAh'
 alias gpsup='git push --set-upstream origin $(git_current_branch)'
