@@ -35,5 +35,3 @@ vim.o.splitright = true
 
 vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
-
-vim.o.conceallevel = 1

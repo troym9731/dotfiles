@@ -33,6 +33,7 @@ return {
 				defaults = {
 					layout_config = { prompt_position = "top" },
 					sorting_strategy = "ascending",
+					path_display = { "truncate" },
 				},
 				extensions = {
 					file_browser = {
@@ -61,6 +62,7 @@ return {
 
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>b", builtin.buffers, { silent = true })
+			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { silent = true })
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { silent = true })
 			vim.keymap.set("n", "<leader>o", builtin.find_files, { silent = true })
 			vim.keymap.set("n", "<leader>l", builtin.live_grep, { silent = true })

@@ -23,6 +23,9 @@
     ~/.config/alacritty/:
       glob: true
       path: alacritty/*
+    ~/.config/efm-langserver/:
+      glob: true
+      path: efm/*
     /usr/local/bin/:
       glob: true
       path: scripts/*

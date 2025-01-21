@@ -4,6 +4,7 @@ return {
 		-- LSP Support
 		{ "williamboman/mason.nvim" },
 		{ "williamboman/mason-lspconfig.nvim" },
+		{ "creativenull/efmls-configs-nvim" },
 
 		-- Autocompletion
 		{
@@ -22,7 +23,7 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
-				"tsserver",
+				"ts_ls",
 				"eslint",
 				"lua_ls",
 				"solargraph",
@@ -79,7 +80,7 @@ return {
 		})
 
 		require("lspconfig").eslint.setup({
-			format = false,
+			format = true,
 		})
 
 		require("lspconfig").jsonls.setup({
@@ -88,20 +89,53 @@ return {
 			},
 		})
 
-		require("lspconfig").tsserver.setup({
+		require("lspconfig").ts_ls.setup({
 			on_attach = function(client)
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentRangeFormattingProvider = false
 			end,
 		})
 
+		local prettierd = require("efmls-configs.formatters.prettier_d")
+		local eslint = require("efmls-configs.formatters.eslint")
+		require("lspconfig").efm.setup({
+			init_options = { documentFormatting = true },
+			settings = {
+				rootMarkers = { ".git/" },
+				languages = {
+					lua = {
+						require("efmls-configs.formatters.stylua"),
+					},
+					javascript = { prettierd },
+					javascriptreact = { prettierd },
+					typescript = { prettierd },
+					typescriptreact = { prettierd },
+					ruby = { prettierd },
+				},
+			},
+		})
+
+		local lsp_fmt_group = vim.api.nvim_create_augroup("LspFormattingGroup", {})
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			group = lsp_fmt_group,
+			callback = function(ev)
+				local efm = vim.lsp.get_active_clients({ name = "efm", bufnr = ev.buf })
+
+				if vim.tbl_isempty(efm) then
+					return
+				end
+
+				vim.lsp.buf.format({ name = "efm", async = true })
+			end,
+		})
+
 		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 			underline = false,
 			signs = {
-				severity_limit = "Warning",
+				severity = vim.diagnostic.severity.WARN,
 			},
 			virtual_text = {
-				severity_limit = "Warning",
+				severity = vim.diagnostic.severity.WARN,
 			},
 		})
 	end,
