@@ -33,12 +33,6 @@ fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 
 ###
-# asdf
-###
-
-source $HOME/.asdf/asdf.sh
-
-###
 # Theme
 ###
 
@@ -116,9 +110,6 @@ export EDITOR=vi
 # Postgres PGDATA environment variable
 export PGDATA=/usr/local/var/postgres
 
-# added by travis gem
-[ -f /Users/Troy/.travis/travis.sh ] && source /Users/Troy/.travis/travis.sh
-
 ###
 # Zoxide
 ###
@@ -138,4 +129,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export PRETTIERD_LOCAL_PRETTIER_ONLY=true
 
+eval "$(mise activate zsh)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"

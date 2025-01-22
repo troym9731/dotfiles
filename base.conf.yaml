@@ -20,6 +20,7 @@
       glob: true
       path: nvim/*
     ~/.vimrc: vimrc
+    ~/.config/ghostty/config: ghostty/config
     ~/.config/alacritty/:
       glob: true
       path: alacritty/*
@@ -32,17 +33,13 @@
 
 - shell:
     - [
-        test -f ~/.tool-versions || touch ~/.tool-versions,
-        "Creating ~/.tool-versions for asdf",
-      ]
-    - [
         ~/.dotfiles/homebrew/install,
         "Installing / Updating Homebrew and specified packages",
       ]
     - [~/.dotfiles/fzf/install, "Adding fzf keybinds"]
     - [source ~/.zshrc, "Sourcing zshrc"]
     - [~/.dotfiles/yarn/install, "Installing yarn"]
-    - [~/.dotfiles/asdf/install, "Installing asdf and its associated plugins"]
+    - [~/.dotfiles/mise/install, "Installing mise languages"]
     - [~/.dotfiles/macos/set-defaults, "Setting MacOS defaults"]
     - [source ~/.zshrc, "Sourcing zshrc"]
     - [~/.dotfiles/vim-plug/install, "Installing vim-plug"]
