@@ -53,6 +53,6 @@
     ~/.zsh/:
       glob: true
       path: zsh/*
-    ~/.p10k.zsh: zsh/p10k.zsh
+    ~/.config/ohmyposh/ohmyposh.toml: zsh/ohmyposh.toml
     /usr/local/share/zsh/site-functions/async: pure_prompt/async.zsh
     /usr/local/share/zsh/site-functions/prompt_pure_setup: pure_prompt/pure.zsh

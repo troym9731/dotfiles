@@ -29,7 +29,7 @@ return {
 				auto_install = true,
 				indent = {
 					enable = true,
-					-- disable = { "ruby" },
+					disable = { "toml" },
 				},
 				highlight = {
 					-- `false` will disable the whole extension
