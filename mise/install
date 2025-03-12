@@ -4,4 +4,10 @@ if $(command -v mise >/dev/null 2>&1)
 then
   echo "› Installing Node with mise"
   mise use --global node@22
+
+  echo "› Installing Python with mise"
+  mise use --global python@3.13
+
+  echo "› Installing Go with mise"
+  mise use --global go@1.23
 fi

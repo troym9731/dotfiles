@@ -23,10 +23,12 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
-				"ts_ls",
-				"eslint",
+				"gopls",
+				"html",
+				"jsonls",
 				"lua_ls",
-				"solargraph",
+				"taplo",
+				"ts_ls",
 			},
 			handlers = {
 				function(server)
@@ -54,6 +56,12 @@ return {
 			}),
 		})
 
+		require("lspconfig").gopls.setup({
+			init_options = {
+				provideFormatter = false,
+			},
+		})
+
 		require("lspconfig").html.setup({
 			init_options = {
 				provideFormatter = false,
@@ -73,20 +81,14 @@ return {
 			},
 		})
 
-		require("lspconfig").solargraph.setup({
-			init_options = {
-				formatting = false,
-			},
-		})
-
-		require("lspconfig").eslint.setup({
-			format = true,
-		})
-
 		require("lspconfig").jsonls.setup({
 			init_options = {
 				provideFormatter = false,
 			},
+		})
+
+		require("lspconfig").taplo.setup({
+			filetypes = { "toml" },
 		})
 
 		require("lspconfig").ts_ls.setup({
@@ -103,14 +105,20 @@ return {
 			settings = {
 				rootMarkers = { ".git/" },
 				languages = {
-					lua = {
-						require("efmls-configs.formatters.stylua"),
+					go = {
+						require("efmls-configs.formatters.gofmt"),
 					},
 					javascript = { prettierd },
 					javascriptreact = { prettierd },
+					lua = {
+						require("efmls-configs.formatters.stylua"),
+					},
+					ruby = { prettierd },
+					toml = {
+						require("efmls-configs.formatters.taplo"),
+					},
 					typescript = { prettierd },
 					typescriptreact = { prettierd },
-					ruby = { prettierd },
 				},
 			},
 		})
@@ -131,12 +139,12 @@ return {
 
 		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 			underline = false,
-			signs = {
-				severity = vim.diagnostic.severity.WARN,
-			},
-			virtual_text = {
-				severity = vim.diagnostic.severity.WARN,
-			},
+			-- signs = {
+			-- 	severity = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR },
+			-- },
+			-- virtual_text = {
+			-- 	severity = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR },
+			-- },
 		})
 	end,
 }

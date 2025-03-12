@@ -6,3 +6,4 @@
 - link:
     ~/.zshrc: home/zshrc
     ~/.gitconfig: home/gitconfig
+    ~/.aider.conf.yml: aider/conf.yml

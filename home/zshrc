@@ -105,6 +105,7 @@ bindkey -e
 # Editor
 ###
 
+export AIDER_EDITOR=nvim
 export EDITOR=vi
 
 # Postgres PGDATA environment variable

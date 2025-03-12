@@ -1954,15 +1954,6 @@
           }
         }
       },
-      "aerospace": {
-        "version": "0.8.7-Beta",
-        "options": {
-          "full_name": "nikitabobko/tap/aerospace",
-          "args": {
-            "appdir": "/Applications"
-          }
-        }
-      },
       "obsidian": {
         "version": "1.7.7",
         "options": {

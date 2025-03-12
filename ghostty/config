@@ -1,15 +1,34 @@
-shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = false
+cursor-invert-fg-bg = true
 font-family = Hasklug Nerd Font Mono
 font-size = 14.0
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 font-thicken = true
+macos-titlebar-style = tabs
+scrollback-limit = 50000
+shell-integration-features = no-cursor
 theme = catppuccin-mocha
+unfocused-split-opacity = 1
 window-height = 1000000
 window-width = 1000000
 
 # Search entire scrollback history in default text editor
 keybind = cmd+f=write_screen_file:open
+keybind = ctrl+space>\=new_split:right
+keybind = ctrl+space>-=new_split:down
+keybind = ctrl+space>l=previous_tab
+keybind = cmd+ctrl+k=goto_split:top
+keybind = cmd+ctrl+l=goto_split:right
+keybind = cmd+ctrl+j=goto_split:bottom
+keybind = cmd+ctrl+h=goto_split:left
+keybind = cmd+ctrl+i=toggle_split_zoom
+keybind = cmd+ctrl+u=scroll_page_up
+keybind = cmd+ctrl+n=scroll_page_down
+keybind = cmd+ctrl+y=scroll_page_lines:-1
+keybind = cmd+ctrl+e=scroll_page_lines:1
+keybind = cmd+ctrl+b=scroll_to_bottom
+keybind = cmd+ctrl+t=jump_to_prompt:-1
+keybind = cmd+ctrl+h=jump_to_prompt:1
