@@ -18,6 +18,7 @@ return {
 					"lua",
 					"markdown",
 					"markdown_inline",
+					"nix",
 					"ruby",
 					"sql",
 					"terraform",
@@ -32,7 +33,7 @@ return {
 				auto_install = true,
 				indent = {
 					enable = true,
-					disable = { "toml" },
+					disable = { "toml", "nix" },
 				},
 				highlight = {
 					-- `false` will disable the whole extension
