@@ -31,4 +31,4 @@ keybind = cmd+ctrl+y=scroll_page_lines:-1
 keybind = cmd+ctrl+e=scroll_page_lines:1
 keybind = cmd+ctrl+b=scroll_to_bottom
 keybind = cmd+ctrl+t=jump_to_prompt:-1
-keybind = cmd+ctrl+h=jump_to_prompt:1
+keybind = cmd+ctrl+r=jump_to_prompt:1

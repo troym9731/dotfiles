@@ -81,7 +81,6 @@ alias gcm='git checkout master'
 alias gf='git fetch'
 alias gco='git checkout'
 alias v='nvim'
-alias ctags="`brew --prefix`/bin/ctags"
 alias av='aws-vault'
 alias vd='date +"v%y.%m.%d"'
 
@@ -127,8 +126,8 @@ eval "$(zoxide init zsh)"
 # FZF
 ###
 
-# fzf fuzzy finder awesomeness
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # Change the default fzf command to use ripgrep
 export FZF_DEFAULT_COMMAND="rg --hidden --files -g '!.git'"
