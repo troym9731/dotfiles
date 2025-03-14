@@ -32,19 +32,17 @@
       path: scripts/*
 
 - shell:
-    - [
-        ~/.dotfiles/homebrew/install,
-        "Installing / Updating Homebrew and specified packages",
-      ]
-    - [~/.dotfiles/fzf/install, "Adding fzf keybinds"]
+    - [~/.dotfiles/nix/install, "Installing Nix"]
+    - [~/.dotfiles/homebrew/install, "Installing / Updating Homebrew"]
     - [source ~/.zshrc, "Sourcing zshrc"]
-    - [~/.dotfiles/yarn/install, "Installing yarn"]
+    - [~/.dotfiles/nix-darwin/install, "Installing nix-darwin"]
+    - [source ~/.zshrc, "Sourcing zshrc"]
+    - [darwin-rebuild switch --flake ~/.dotfiles/nix-darwin, "Applying nix-darwin configuration"]
+    - [source ~/.zshrc, "Sourcing zshrc"]
     - [~/.dotfiles/mise/install, "Installing mise languages"]
-    - [~/.dotfiles/macos/set-defaults, "Setting MacOS defaults"]
     - [source ~/.zshrc, "Sourcing zshrc"]
     - [~/.dotfiles/vim-plug/install, "Installing vim-plug"]
     - [mkdir -p ~/.vim/backup, "Creating backup vim directory"]
-    - [~/.dotfiles/yarn_global/install, "Installing Yarn global packages"]
 
 - link:
     ~/.zsh/:

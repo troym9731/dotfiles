@@ -6,10 +6,5 @@ then
   then
     echo "› Install Homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    source ~/.zshrc
   fi
-
-  echo "› brew bundle"
-  brew bundle check --file=$DOTFILES/homebrew/Brewfile
-  brew bundle --file=$DOTFILES/homebrew/Brewfile
 fi

@@ -10,4 +10,7 @@ then
 
   echo "› Installing Go with mise"
   mise use --global go@1.23
+
+  echo "› Installing Rust with mise"
+  mise use -g rust
 fi

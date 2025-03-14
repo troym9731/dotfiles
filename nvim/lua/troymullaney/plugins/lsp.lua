@@ -23,7 +23,6 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
-				"alejandra",
 				"gopls",
 				"html",
 				"jsonls",
@@ -55,12 +54,6 @@ return {
 			}, {
 				{ name = "buffer" },
 			}),
-		})
-
-		require("lspconfig").alejandra.setup({
-			init_options = {
-				provideFormatter = false,
-			},
 		})
 
 		require("lspconfig").gopls.setup({
@@ -120,7 +113,7 @@ return {
 						require("efmls-configs.formatters.stylua"),
 					},
 					nix = {
-						require("efmls-configs.formatters.alejandra"),
+						require("efmls-configs.formatters.nixfmt"),
 					},
 					ruby = { prettierd },
 					toml = {

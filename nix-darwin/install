@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if ! $(command -v darwin-rebuild >/dev/null 2>&1)
+then
+  echo "› Install nix-darwin"
+  nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.dotfiles/nix-darwin
+fi

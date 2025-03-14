@@ -1,6 +1,0 @@
-#!/bin/sh
-
-if ! $(command -v yarn >/dev/null 2>&1)
-then
-  curl -o- -L https://yarnpkg.com/install.sh | bash
-fi
