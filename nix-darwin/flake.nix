@@ -41,6 +41,7 @@
             pkgs.fzf
             pkgs.gh
             pkgs.git
+            pkgs.hugo
             pkgs.oh-my-posh
             pkgs.jq
             pkgs.mise
