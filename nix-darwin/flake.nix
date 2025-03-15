@@ -107,6 +107,10 @@
 
           fonts.packages = [ pkgs.nerd-fonts.hasklug ];
 
+          programs.zsh = {
+            enableFastSyntaxHighlighting = true;
+          };
+
           system.defaults = {
             dock.autohide = true;
             dock.persistent-apps = [
