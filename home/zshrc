@@ -1,25 +1,12 @@
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
-# End Nix
-
 ###
 # Path
 ###
 
-export PATH="$PATH:/usr/local/mysql/bin"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/bin"
 export PATH="$PATH:/usr/sbin"
-export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/sbin"
-export PATH="$PATH:$HOME/.yarn/bin"
-export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
-export PATH="$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin"
-# Homebrew wants this for adding it to the PATH
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ###
 # Zsh Customization
@@ -35,7 +22,6 @@ zstyle ':completion:*' menu select
 # Init Zsh
 ###
 
-fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 
 ###
@@ -43,6 +29,12 @@ autoload -Uz compinit && compinit
 ###
 
 autoload -U promptinit; promptinit
+
+###
+# Highlighting
+###
+
+source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ###
 # Aliases
@@ -91,7 +83,7 @@ alias vd='date +"v%y.%m.%d"'
 # http://zsh.sourceforge.net/Doc/Release/Options.html
 SAVEHIST=5000
 HISTSIZE=5000
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
@@ -112,9 +104,6 @@ bindkey -e
 
 export AIDER_EDITOR=nvim
 export EDITOR=vi
-
-# Postgres PGDATA environment variable
-export PGDATA=/usr/local/var/postgres
 
 ###
 # Zoxide

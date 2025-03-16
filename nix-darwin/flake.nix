@@ -30,7 +30,6 @@
           # $ nix-env -qaP | grep wget
           environment.systemPackages = [
             pkgs.alacritty
-            pkgs.aws-vault
             pkgs.bat
             pkgs.bottom
             pkgs.bun
@@ -57,14 +56,12 @@
             pkgs.wget
             pkgs.zoxide
             pkgs.zsh
+            pkgs.zsh-syntax-highlighting
           ];
 
           homebrew = {
             enable = true;
-            taps = [
-              "jandedobbeleer/oh-my-posh"
-              "oven-sh/bun"
-            ];
+            taps = [ "oven-sh/bun" ];
             brews = [
               # Needed for other dependencies
               "coreutils"
@@ -79,7 +76,6 @@
               "qt"
               # Standard brews
               "aider"
-              "awscli"
               "gnu-sed"
               "mas"
               "reattach-to-user-namespace"
@@ -108,8 +104,19 @@
 
           fonts.packages = [ pkgs.nerd-fonts.hasklug ];
 
+          # Allows for sourcing zsh syntax highlighting
+          environment.pathsToLink = [ "/share" ];
+
           programs.zsh = {
-            enableFastSyntaxHighlighting = true;
+            enable = true;
+            enableBashCompletion = false;
+            enableCompletion = false;
+            promptInit = "";
+          };
+
+          system.keyboard = {
+            enableKeyMapping = true;
+            remapCapsLockToControl = true;
           };
 
           system.defaults = {

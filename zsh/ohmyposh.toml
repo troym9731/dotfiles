@@ -10,82 +10,81 @@ auto = false
 grey = '#6c6c6c'
 
 [[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-  newline = true
+type = 'prompt'
+alignment = 'left'
+newline = true
 
-  [[blocks.segments]]
-    type = 'path'
-    style = 'plain'
-    background = 'transparent'
-    foreground = 'blue'
-    template = '{{ .Path }}'
+[[blocks.segments]]
+type = 'path'
+style = 'plain'
+background = 'transparent'
+foreground = 'blue'
+template = '{{ .Path }}'
 
-    [blocks.segments.properties]
-      style = 'full'
+[blocks.segments.properties]
+style = 'full'
 
-  [[blocks.segments]]
-    type = 'git'
-    style = 'plain'
-    background = 'transparent'
-    foreground = 'p:grey'
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}<magenta>*</>{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+[[blocks.segments]]
+type = 'git'
+style = 'plain'
+background = 'transparent'
+foreground = 'p:grey'
+template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}<magenta>*</>{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
 
-    [blocks.segments.properties]
-      branch_icon = ''
-      commit_icon = '@'
-      fetch_status = true
-
-[[blocks]]
-  type = 'prompt'
-  alignment = 'right'
-  overflow = 'hidden'
-
-    [[blocks.segments]]
-      type = 'executiontime'
-      style = 'plain'
-      background = 'transparent'
-      foreground = 'yellow'
-      template = '{{ .FormattedMs }} '
-
-      [blocks.segments.properties]
-        threshold = 200
-
-    [[blocks.segments]]
-      type = 'node'
-      foreground = 'green'
-      template = '{{ .Full }} '
-
-    [[blocks.segments]]
-      type = 'go'
-      foreground = 'blue'
-      template = '{{ .Full }} '
+[blocks.segments.properties]
+branch_icon = ''
+commit_icon = '@'
+fetch_status = true
 
 [[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-  newline = true
+type = 'prompt'
+alignment = 'right'
+overflow = 'hidden'
 
-  [[blocks.segments]]
-    type = 'text'
-    style = 'plain'
-    background = 'transparent'
-    foreground_templates = [
-      '{{ if gt .Code 0 }}red{{ end }}',
-      '{{ if eq .Code 0 }}green{{ end }}'
-    ]
-    template = 'λ'
+[[blocks.segments]]
+type = 'executiontime'
+style = 'plain'
+background = 'transparent'
+foreground = 'yellow'
+template = '{{ .FormattedMs }} '
+
+[blocks.segments.properties]
+threshold = 200
+
+[[blocks.segments]]
+type = 'node'
+foreground = 'green'
+template = '{{ .Full }} '
+
+[[blocks.segments]]
+type = 'go'
+foreground = 'blue'
+template = '{{ .Full }} '
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+[[blocks.segments]]
+type = 'text'
+style = 'plain'
+background = 'transparent'
+foreground_templates = [
+  '{{ if gt .Code 0 }}red{{ end }}',
+  '{{ if eq .Code 0 }}green{{ end }}',
+]
+template = '⟢'
 
 [transient_prompt]
-  background = 'transparent'
-  foreground_templates = [
-    '{{ if gt .Code 0 }}red{{ end }}',
-    '{{ if eq .Code 0 }}green{{ end }}'
-  ]
-  template = 'λ '
+background = 'transparent'
+foreground_templates = [
+  '{{ if gt .Code 0 }}red{{ end }}',
+  '{{ if eq .Code 0 }}green{{ end }}',
+]
+template = '⟢ '
 
 [secondary_prompt]
-  background = 'transparent'
-  foreground = 'green'
-  template = 'λλ '
-
+background = 'transparent'
+foreground = 'green'
+template = '⟢⟢ '

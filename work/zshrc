@@ -2,18 +2,14 @@
 # Path
 ###
 
-export PATH="/Users/troymullaney/.rbenv/shims"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/bin"
 export PATH="$PATH:/usr/sbin"
-export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/sbin"
-export PATH="$PATH:$HOME/.yarn/bin"
-export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
-export PATH="$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin"
 # Homebrew wants this for adding it to the PATH
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Taken care of by nix-darwin
+# eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ###
 # Zsh Customization
@@ -29,14 +25,15 @@ zstyle ':completion:*' menu select
 # Init Zsh
 ###
 
-fpath=(~/.zsh $fpath)
-autoload -Uz compinit && compinit
+# Taken care of by nix-darwin
+# autoload -Uz compinit && compinit
 
 ###
 # Theme
 ###
 
-autoload -U promptinit; promptinit
+# Taken care of by nix-darwin
+# autoload -U promptinit; promptinit
 
 ###
 # Aliases
@@ -122,8 +119,8 @@ eval "$(zoxide init zsh)"
 # FZF
 ###
 
-# fzf fuzzy finder awesomeness
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # Change the default fzf command to use ripgrep
 export FZF_DEFAULT_COMMAND="rg --hidden --files -g '!.git'"
