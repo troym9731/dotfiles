@@ -40,22 +40,6 @@ source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlight
 # Aliases
 ###
 
-# Helper function
-# Outputs the name of the current branch
-# Usage example: git pull origin $(git_current_branch)
-# Using '--quiet' with 'symbolic-ref' will not cause a fatal error (128) if
-# it's not a symbolic ref, but in a Git repo.
-function git_current_branch() {
-  local ref
-  ref=$(command git symbolic-ref --quiet HEAD 2> /dev/null)
-  local ret=$?
-  if [[ $ret != 0 ]]; then
-    [[ $ret == 128 ]] && return  # no git repo.
-    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
-  fi
-  echo ${ref#refs/heads/}
-}
-
 alias ..='cd ..'
 alias clear='printf "\033[H\033[2J"'
 alias ls='ls -G'
@@ -72,8 +56,9 @@ alias gds='git diff --staged'
 alias gcm='git checkout master'
 alias gf='git fetch'
 alias gco='git checkout'
+alias ghprvw='gh pr view --web'
+alias ghieaddme='gh issue edit --add-assignee @me'
 alias v='nvim'
-alias av='aws-vault'
 alias vd='date +"v%y.%m.%d"'
 
 ###
