@@ -11,6 +11,9 @@ then
   echo "› Installing Go with mise"
   mise use --global go@1.23
 
+  echo "› Installing Elixir (and Erlang) with mise"
+  mise use --global erlang elixir@1.18
+
   echo "› Installing Rust with mise"
   mise use -g rust
 fi

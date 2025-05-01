@@ -33,6 +33,7 @@
             pkgs.bat
             pkgs.bottom
             pkgs.bun
+            pkgs.claude-code
             pkgs.cloc
             pkgs.efm-langserver
             pkgs.fd
