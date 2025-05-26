@@ -16,15 +16,16 @@
       nix-homebrew,
     }:
     let
-      configuration =
+      commonModule =
         { pkgs, ... }:
         {
           nix.enable = false;
-
-          nixpkgs.config.allowUnfree = true;
-
           # Necessary for using flakes on this system.
           nix.settings.experimental-features = "nix-command flakes";
+
+          # The platform the configuration will be used on.
+          nixpkgs.hostPlatform = "aarch64-darwin";
+          nixpkgs.config.allowUnfree = true;
 
           # List packages installed in system profile. To search by name, run:
           # $ nix-env -qaP | grep wget
@@ -32,7 +33,6 @@
             pkgs.alacritty
             pkgs.bat
             pkgs.bottom
-            pkgs.bun
             pkgs.claude-code
             pkgs.cloc
             pkgs.efm-langserver
@@ -41,15 +41,12 @@
             pkgs.fzf
             pkgs.gh
             pkgs.git
-            pkgs.hugo
             pkgs.oh-my-posh
             pkgs.jq
             pkgs.mise
             pkgs.neovim
             pkgs.nixfmt-rfc-style
-            pkgs.prettierd
             pkgs.ripgrep
-            pkgs.terraform
             pkgs.tldr
             pkgs.tmux
             pkgs.tree
@@ -60,23 +57,17 @@
             pkgs.zsh-syntax-highlighting
           ];
 
+          # Allows for sourcing zsh syntax highlighting
+          environment.pathsToLink = [ "/share" ];
+
           homebrew = {
             enable = true;
-            taps = [ "oven-sh/bun" ];
             brews = [
               # Needed for other dependencies
               "coreutils"
               "gpg"
-              "automake"
-              "autoconf"
               "openssl"
-              "libyaml"
-              "readline"
-              "libtool"
-              "unixodbc"
-              "qt"
               # Standard brews
-              "aider"
               "gnu-sed"
               "mas"
               "reattach-to-user-namespace"
@@ -84,29 +75,23 @@
             casks = [
               "1password"
               "bettertouchtool"
-              "discord"
               "firefox"
               "ghostty"
               "google-chrome"
               "kap"
-              "microsoft-teams"
               "raycast"
               "slack"
               "spotify"
               "visual-studio-code"
             ];
-            masApps = {
-              "Logic Pro" = 634148309;
+            onActivation = {
+              cleanup = "zap";
+              autoUpdate = true;
+              upgrade = true;
             };
-            onActivation.cleanup = "zap";
-            onActivation.autoUpdate = true;
-            onActivation.upgrade = true;
           };
 
           fonts.packages = [ pkgs.nerd-fonts.hasklug ];
-
-          # Allows for sourcing zsh syntax highlighting
-          environment.pathsToLink = [ "/share" ];
 
           programs.zsh = {
             enable = true;
@@ -122,14 +107,8 @@
 
           system.defaults = {
             dock.autohide = true;
-            dock.persistent-apps = [
-              "/System/Applications/Messages.app"
-              "/Applications/Google Chrome.app"
-              "/Applications/Spotify.app"
-              "/Applications/Discord.app"
-              "/Applications/Ghostty.app"
-            ];
             finder.FXPreferredViewStyle = "clmv";
+            finder.AppleShowAllExtensions = true;
             loginwindow.GuestEnabled = false;
             NSGlobalDomain.AppleInterfaceStyle = "Dark";
             NSGlobalDomain.ApplePressAndHoldEnabled = false;
@@ -143,27 +122,75 @@
           # Used for backwards compatibility, please read the changelog before changing.
           # $ darwin-rebuild changelog
           system.stateVersion = 6;
-
-          # The platform the configuration will be used on.
-          nixpkgs.hostPlatform = "aarch64-darwin";
         };
     in
     {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#Troys-Personal-MacBook-Pro
-      darwinConfigurations."Troys-Personal-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        modules = [
-          configuration
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              enable = true;
-              enableRosetta = true;
-              user = "troymullaney";
-              autoMigrate = true;
-            };
-          }
-        ];
+      darwinConfigurations = {
+        "Troys-Personal-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+          modules = [
+            commonModule
+            nix-homebrew.darwinModules.nix-homebrew
+            (
+              { pkgs, ... }:
+              {
+                system.primaryUser = "troymullaney";
+                system.defaults.dock.persistent-apps = [
+                  "/System/Applications/Messages.app"
+                  "/Applications/Google Chrome.app"
+                  "/Applications/Spotify.app"
+                  "/Applications/Discord.app"
+                  "/Applications/Ghostty.app"
+                ];
+                environment.systemPackages = [
+                  pkgs.bun
+                  pkgs.hugo
+                  pkgs.terraform
+                ];
+                homebrew = {
+                  casks = [
+                    "discord"
+                    "microsoft-teams"
+                  ];
+                  masApps = {
+                    "Logic Pro" = 634148309;
+                  };
+                };
+                nix-homebrew = {
+                  enable = true;
+                  enableRosetta = true;
+                  user = "troymullaney";
+                  autoMigrate = true;
+                };
+              }
+            )
+          ];
+        };
+
+        "Troys-Work" = nix-darwin.lib.darwinSystem {
+          modules = [
+            commonModule
+            nix-homebrew.darwinModules.nix-homebrew
+            (
+              { pkgs, ... }:
+              {
+                system.primaryUser = "";
+                system.defaults.dock.persistent-apps = [
+                  "/Applications/Google Chrome.app"
+                  "/Applications/Spotify.app"
+                  "/Applications/Ghostty.app"
+                ];
+                nix-homebrew = {
+                  enable = true;
+                  enableRosetta = true;
+                  user = "";
+                  autoMigrate = true;
+                };
+              }
+            )
+          ];
+        };
       };
     };
 }

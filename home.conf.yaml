@@ -4,6 +4,6 @@
       create: true
 
 - link:
-    ~/.zshrc: home/zshrc
-    ~/.gitconfig: home/gitconfig
+    ~/.zshrc: zsh/home/zshrc
+    ~/.gitconfig: git/home/gitconfig
     ~/.aider.conf.yml: aider/conf.yml

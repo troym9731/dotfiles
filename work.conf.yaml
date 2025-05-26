@@ -4,5 +4,5 @@
       create: true
 
 - link:
-    ~/.zshrc: work/zshrc
-    ~/.gitconfig: work/gitconfig
+    ~/.zshrc: zsh/work/zshrc
+    ~/.gitconfig: git/work/gitconfig

@@ -37,7 +37,7 @@
     - [source ~/.zshrc, "Sourcing zshrc"]
     - [~/.dotfiles/nix-darwin/install, "Installing nix-darwin"]
     - [source ~/.zshrc, "Sourcing zshrc"]
-    - [darwin-rebuild switch --flake ~/.dotfiles/nix-darwin, "Applying nix-darwin configuration"]
+    - [sudo darwin-rebuild switch --flake ~/.dotfiles/nix-darwin, "Applying nix-darwin configuration"]
     - [source ~/.zshrc, "Sourcing zshrc"]
     - [~/.dotfiles/mise/install, "Installing mise languages"]
     - [source ~/.zshrc, "Sourcing zshrc"]
@@ -48,6 +48,6 @@
     ~/.zsh/:
       glob: true
       path: zsh/*
-    ~/.config/ohmyposh/ohmyposh.toml: zsh/ohmyposh.toml
+    ~/.config/ohmyposh/ohmyposh.toml: oh-my-posh/ohmyposh.toml
     /usr/local/share/zsh/site-functions/async: pure_prompt/async.zsh
     /usr/local/share/zsh/site-functions/prompt_pure_setup: pure_prompt/pure.zsh
