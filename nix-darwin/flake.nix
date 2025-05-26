@@ -75,6 +75,7 @@
             casks = [
               "1password"
               "bettertouchtool"
+              "dropbox"
               "firefox"
               "ghostty"
               "google-chrome"
