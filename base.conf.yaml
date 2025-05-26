@@ -10,7 +10,7 @@
 - clean: ["~"]
 
 - shell:
-    - [mkdir -p /usr/local/bin, "Creating /usr/local/bin if it does not exist"]
+    - [sudo mkdir -p /usr/local/bin, "Creating /usr/local/bin if it does not exist (may need to `chown` it as well)"]
 
 - link:
     ~/.aerospace.toml: aerospace.toml
@@ -33,6 +33,7 @@
 
 - shell:
     - [~/.dotfiles/nix/install, "Installing Nix"]
+    - [. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh, "Starting nix..."]
     - [~/.dotfiles/homebrew/install, "Installing / Updating Homebrew"]
     - [source ~/.zshrc, "Sourcing zshrc"]
     - [~/.dotfiles/nix-darwin/install, "Installing nix-darwin"]

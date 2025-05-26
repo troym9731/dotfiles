@@ -176,7 +176,7 @@
           ];
         };
 
-        "Troys-Work" = nix-darwin.lib.darwinSystem {
+        "Troys-Work-MacBook-Pro" = nix-darwin.lib.darwinSystem {
           modules = [
             commonModule
             nix-homebrew.darwinModules.nix-homebrew
