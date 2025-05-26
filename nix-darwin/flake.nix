@@ -107,13 +107,21 @@
 
           system.defaults = {
             dock.autohide = true;
-            finder.FXPreferredViewStyle = "clmv";
-            finder.AppleShowAllExtensions = true;
             loginwindow.GuestEnabled = false;
-            NSGlobalDomain.AppleInterfaceStyle = "Dark";
-            NSGlobalDomain.ApplePressAndHoldEnabled = false;
-            NSGlobalDomain.KeyRepeat = 2;
-            NSGlobalDomain.InitialKeyRepeat = 20;
+            finder = {
+              FXPreferredViewStyle = "clmv";
+              AppleShowAllExtensions = true;
+            };
+            NSGlobalDomain = {
+              AppleInterfaceStyle = "Dark";
+              ApplePressAndHoldEnabled = false;
+              KeyRepeat = 2;
+              InitialKeyRepeat = 20;
+            };
+            trackpad = {
+              Clicking = true;
+              TrackpadRightClick = true;
+            };
           };
 
           # Set Git commit hash for darwin-version.
