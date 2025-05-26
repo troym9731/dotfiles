@@ -3,7 +3,7 @@
 if ! $(command -v darwin-rebuild >/dev/null 2>&1)
 then
   echo "› Install nix-darwin"
-  nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.dotfiles/nix-darwin
+  sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.dotfiles/nix-darwin
 else
   echo "› Updating nix-darwin flake"
   nix flake update --flake ~/.dotfiles/nix-darwin/
