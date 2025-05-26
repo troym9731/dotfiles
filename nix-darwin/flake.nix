@@ -183,7 +183,7 @@
             (
               { pkgs, ... }:
               {
-                system.primaryUser = "";
+                system.primaryUser = "troymullaney";
                 system.defaults.dock.persistent-apps = [
                   "/Applications/Google Chrome.app"
                   "/Applications/Spotify.app"
@@ -192,7 +192,7 @@
                 nix-homebrew = {
                   enable = true;
                   enableRosetta = true;
-                  user = "";
+                  user = "troymullaney";
                   autoMigrate = true;
                 };
               }
