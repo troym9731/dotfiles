@@ -7,9 +7,6 @@ export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/bin"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/sbin"
-# Homebrew wants this for adding it to the PATH
-# Taken care of by nix-darwin
-# eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ###
 # Zsh Customization
@@ -25,15 +22,13 @@ zstyle ':completion:*' menu select
 # Init Zsh
 ###
 
-# Taken care of by nix-darwin
-# autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit
 
 ###
 # Theme
 ###
 
-# Taken care of by nix-darwin
-# autoload -U promptinit; promptinit
+autoload -U promptinit; promptinit
 
 ###
 # Aliases

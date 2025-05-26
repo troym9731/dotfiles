@@ -10,7 +10,7 @@
 - clean: ["~"]
 
 - shell:
-    - [sudo mkdir -p /usr/local/bin, "Creating /usr/local/bin if it does not exist (may need to `chown` it as well)"]
+    - [mkdir -p ~/.local/bin, "Creating directory for scripts"]
 
 - link:
     ~/.aerospace.toml: aerospace.toml
@@ -27,7 +27,7 @@
     ~/.config/efm-langserver/:
       glob: true
       path: efm/*
-    /usr/local/bin/:
+    ~/.local/bin:
       glob: true
       path: scripts/*
 
@@ -49,6 +49,6 @@
     ~/.zsh/:
       glob: true
       path: zsh/*
-    ~/.config/ohmyposh/ohmyposh.toml: oh-my-posh/ohmyposh.toml
+    ~/.config/ohmyposh/ohmyposh.toml: ohmyposh/ohmyposh.toml
     /usr/local/share/zsh/site-functions/async: pure_prompt/async.zsh
     /usr/local/share/zsh/site-functions/prompt_pure_setup: pure_prompt/pure.zsh
