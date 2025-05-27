@@ -106,8 +106,24 @@
             remapCapsLockToControl = true;
           };
 
+          # This applies the settings without a restart
+          # /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u.
           system.defaults = {
-            dock.autohide = true;
+            controlcenter.Bluetooth = true;
+            CustomUserPreferences = {
+              "com.apple.symbolichotkeys" = {
+                AppleSymbolicHotKeys = {
+                  # Disable 'Cmd + Space' for Spotlight Search
+                  "64" = {
+                    enabled = false;
+                  };
+                };
+              };
+            };
+            dock = {
+              autohide = true;
+              show-recents = false;
+            };
             loginwindow.GuestEnabled = false;
             finder = {
               FXPreferredViewStyle = "clmv";
@@ -118,6 +134,7 @@
               ApplePressAndHoldEnabled = false;
               KeyRepeat = 2;
               InitialKeyRepeat = 20;
+              "com.apple.mouse.tapBehavior" = 1;
             };
             trackpad = {
               Clicking = true;
