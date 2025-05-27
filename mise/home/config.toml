@@ -1,0 +1,9 @@
+[tools]
+bun = '1.2'
+elixir = '1.18'
+erlang = '27'
+go = '1.23'
+node = '22'
+python = '3.13'
+rust = '1.85'
+terraform = '1.12'

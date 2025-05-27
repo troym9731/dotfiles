@@ -39,7 +39,7 @@
     - [source ~/.zshrc, "Sourcing zshrc"]
     - [sudo darwin-rebuild switch --flake ~/.dotfiles/nix-darwin, "Applying nix-darwin configuration"]
     - [source ~/.zshrc, "Sourcing zshrc"]
-    - [~/.dotfiles/mise/install, "Installing mise languages"]
+    - [mise install, "Installing mise languages"]
     - [source ~/.zshrc, "Sourcing zshrc"]
     - [~/.dotfiles/vim-plug/install, "Installing vim-plug"]
     - [mkdir -p ~/.vim/backup, "Creating backup vim directory"]

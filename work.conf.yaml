@@ -6,3 +6,4 @@
 - link:
     ~/.zshrc: zsh/work/zshrc
     ~/.gitconfig: git/work/gitconfig
+    ~/.config/mise/config.toml: mise/work/config.toml

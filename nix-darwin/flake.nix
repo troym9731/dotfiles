@@ -170,9 +170,7 @@
                   "/Applications/Ghostty.app"
                 ];
                 environment.systemPackages = [
-                  pkgs.bun
                   pkgs.hugo
-                  pkgs.terraform
                 ];
                 homebrew = {
                   casks = [
