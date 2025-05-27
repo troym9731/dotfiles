@@ -34,7 +34,6 @@
 - shell:
     - [~/.dotfiles/nix/install, "Installing Nix"]
     - [. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh, "Starting nix..."]
-    - [~/.dotfiles/homebrew/install, "Installing / Updating Homebrew"]
     - [source ~/.zshrc, "Sourcing zshrc"]
     - [~/.dotfiles/nix-darwin/install, "Installing nix-darwin"]
     - [source ~/.zshrc, "Sourcing zshrc"]

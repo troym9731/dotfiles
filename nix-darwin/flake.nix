@@ -170,7 +170,7 @@
                   enable = true;
                   enableRosetta = true;
                   user = "troymullaney";
-                  autoMigrate = true;
+                  mutableTaps = false;
                 };
               }
             )
@@ -194,7 +194,7 @@
                   enable = true;
                   enableRosetta = true;
                   user = "troymullaney";
-                  autoMigrate = true;
+                  mutableTaps = false;
                 };
               }
             )
