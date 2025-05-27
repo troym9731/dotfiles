@@ -32,6 +32,12 @@ autoload -Uz compinit && compinit
 autoload -U promptinit; promptinit
 
 ###
+# Highlighting
+###
+
+source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+###
 # Aliases
 ###
 
