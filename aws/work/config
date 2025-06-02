@@ -1,0 +1,75 @@
+[default]
+region = us-east-1
+output = json
+
+# This is what you use to login via the aws configure sso command
+# aws configure sso --profile login
+# once you have logged in, you can use the other profiles
+# by setting export AWS_PROFILE=<profile-name>
+[profile login]
+sso_start_url = https://d-9067bf4e68.awsapps.com/start
+sso_region = us-east-1
+
+[profile instinct-dev]
+sso_account_id = 493456217622
+sso_role_name = EngineeringAccess
+sso_start_url = https://d-9067bf4e68.awsapps.com/start
+sso_region = us-east-1
+region = us-east-1
+output = json
+
+[profile instinct-stage]
+sso_account_id = 338405960701
+sso_role_name = EngineeringAccess
+sso_start_url = https://d-9067bf4e68.awsapps.com/start
+sso_region = us-east-1
+region = us-east-1
+output = json
+
+[profile instinct-prod]
+sso_account_id = 932418557441
+sso_role_name = EngineeringAccess
+sso_start_url = https://d-9067bf4e68.awsapps.com/start
+sso_region = us-east-1
+region = us-east-1
+output = json
+
+[profile instinct-shared]
+sso_account_id = 753727678354
+sso_role_name = ReadOnlyAccess
+sso_start_url = https://d-9067bf4e68.awsapps.com/start
+sso_region = us-east-1
+region = us-east-1
+output = json
+
+[profile instinct-legacy]
+sso_account_id = 204552664420
+sso_role_name = EngineeringAccess
+sso_start_url = https://d-9067bf4e68.awsapps.com/start
+sso_region = us-east-1
+region = us-east-1
+output = json
+
+[profile instinct-ap-east-1]
+sso_account_id = 932418557441
+sso_role_name = EngineeringAccess
+sso_start_url = https://d-9067bf4e68.awsapps.com/start
+sso_region = us-east-1
+region = ap-east-1
+output = json
+
+[profile instinct-ap-southeast-2]
+sso_account_id = 932418557441
+sso_role_name = EngineeringAccess
+sso_start_url = https://d-9067bf4e68.awsapps.com/start
+sso_region = us-east-1
+region = ap-southeast-2
+output = json
+
+[profile instinct-eu-west-1]
+sso_account_id = 932418557441
+sso_role_name = EngineeringAccess
+sso_start_url = https://d-9067bf4e68.awsapps.com/start
+sso_region = us-east-1
+region = eu-west-1
+output = json
