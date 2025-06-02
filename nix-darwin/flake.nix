@@ -126,6 +126,8 @@
             dock = {
               autohide = true;
               show-recents = false;
+              # Default is 64
+              tilesize = 50;
             };
             loginwindow.GuestEnabled = false;
             finder = {
