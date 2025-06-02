@@ -97,6 +97,9 @@ export EDITOR=vi
 
 eval "$(zoxide init zsh)"
 
+# 1Password and Docker ssh agent compatibility
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
 ###
 # FZF
 ###
@@ -110,5 +113,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export PRETTIERD_LOCAL_PRETTIER_ONLY=true
 
+export DEV_SCRIPTS_DIR=~/instinct/dev_scripts
+source $DEV_SCRIPTS_DIR/init_dev_scripts.sh
+
 eval "$(mise activate zsh)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
+export WS_GITHUB_TOKEN=$(gh auth token)

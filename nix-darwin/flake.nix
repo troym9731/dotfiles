@@ -66,14 +66,17 @@
               # Needed for other dependencies
               "coreutils"
               "gpg"
+              "libyaml"
               "openssl"
               # Standard brews
+              "awscli"
               "gnu-sed"
               "mas"
               "reattach-to-user-namespace"
             ];
             casks = [
               "1password"
+              "1password-cli"
               "bettertouchtool"
               "dropbox"
               "firefox"
@@ -204,6 +207,20 @@
                   "/Applications/Spotify.app"
                   "/Applications/Ghostty.app"
                 ];
+                homebrew = {
+                  brews = [
+                    "asdf"
+                    "gum"
+                    "helm"
+                    "jira-cli"
+                    "kubectl"
+                    "mkcert"
+                    "yq"
+                  ];
+                  casks = [
+                    "docker"
+                  ];
+                };
                 nix-homebrew = {
                   enable = true;
                   enableRosetta = true;
