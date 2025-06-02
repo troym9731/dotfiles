@@ -5,6 +5,5 @@ then
   echo "› Install nix-darwin"
   sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.dotfiles/nix-darwin
 else
-  echo "› Updating nix-darwin flake"
-  nix flake update --flake ~/.dotfiles/nix-darwin/
+  echo "› nix-darwin already installed"
 fi
