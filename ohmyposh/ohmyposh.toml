@@ -51,16 +51,6 @@ template = '{{ .FormattedMs }} '
 [blocks.segments.properties]
 threshold = 200
 
-[[blocks.segments]]
-type = 'node'
-foreground = 'green'
-template = '{{ .Full }} '
-
-[[blocks.segments]]
-type = 'go'
-foreground = 'blue'
-template = '{{ .Full }} '
-
 [[blocks]]
 type = 'prompt'
 alignment = 'left'
