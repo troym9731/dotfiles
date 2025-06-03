@@ -120,6 +120,7 @@
                   "64" = {
                     enabled = false;
                   };
+                  # Disable 'Ctrl + Space' (and 'Ctrl + Alt + Space') for toggling input sources
                   "60" = {
                     enabled = false;
                   };
