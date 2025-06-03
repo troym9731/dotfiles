@@ -23,10 +23,12 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
+				"fixjson",
 				"gopls",
 				"html",
 				"jsonls",
 				"lua_ls",
+				"stylua",
 				"taplo",
 				"ts_ls",
 			},
@@ -109,6 +111,7 @@ return {
 					},
 					javascript = { prettierd },
 					javascriptreact = { prettierd },
+					json = { require("efmls-configs.formatters.fixjson") },
 					lua = {
 						require("efmls-configs.formatters.stylua"),
 					},
