@@ -9,6 +9,9 @@ output = json
 [profile login]
 sso_start_url = https://d-9067bf4e68.awsapps.com/start
 sso_region = us-east-1
+sso_session = Dev
+sso_account_id = 493456217622
+sso_role_name = EngineeringAccess
 
 [profile instinct-dev]
 sso_account_id = 493456217622
@@ -20,7 +23,7 @@ output = json
 
 [profile instinct-stage]
 sso_account_id = 338405960701
-sso_role_name = EngineeringAccess
+sso_role_name = AdministratorAccess
 sso_start_url = https://d-9067bf4e68.awsapps.com/start
 sso_region = us-east-1
 region = us-east-1
@@ -73,3 +76,7 @@ sso_start_url = https://d-9067bf4e68.awsapps.com/start
 sso_region = us-east-1
 region = eu-west-1
 output = json
+[sso-session Dev]
+sso_start_url = https://d-9067bf4e68.awsapps.com/start
+sso_region = us-east-1
+sso_registration_scopes = sso:account:access
