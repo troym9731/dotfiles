@@ -203,7 +203,7 @@
           ];
         };
 
-        "Troys-Work-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+        "tmul-insci-2025" = nix-darwin.lib.darwinSystem {
           modules = [
             commonModule
             nix-homebrew.darwinModules.nix-homebrew
@@ -224,6 +224,7 @@
                     "jira-cli"
                     "kubectl"
                     "mkcert"
+                    "postgresql"
                     "yq"
                   ];
                   casks = [

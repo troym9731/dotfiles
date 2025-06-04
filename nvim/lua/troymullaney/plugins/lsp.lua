@@ -23,12 +23,10 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
-				"fixjson",
 				"gopls",
 				"html",
 				"jsonls",
 				"lua_ls",
-				"stylua",
 				"taplo",
 				"ts_ls",
 			},
@@ -101,11 +99,23 @@ return {
 		})
 
 		local prettierd = require("efmls-configs.formatters.prettier_d")
+		local fs = require("efmls-configs.fs")
+
 		require("lspconfig").efm.setup({
 			init_options = { documentFormatting = true },
 			settings = {
 				rootMarkers = { ".git/" },
 				languages = {
+					elixir = {
+						{
+							formatCommand = string.format("%s %s", fs.executable("mix"), "format -"),
+							formatStdin = true,
+							rootMarkers = {
+								".formatter.exs",
+								"mix.exs",
+							},
+						},
+					},
 					go = {
 						require("efmls-configs.formatters.gofmt"),
 					},
