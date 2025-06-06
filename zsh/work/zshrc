@@ -37,6 +37,14 @@ autoload -U promptinit; promptinit
 
 source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
+###
+# Dev Scripts sourcing
+###
+
+export DEV_SCRIPTS_DIR=~/instinct/dev_scripts
+source $DEV_SCRIPTS_DIR/init_dev_scripts.sh
+
 ###
 # Aliases
 ###
@@ -58,9 +66,9 @@ alias gcm='git checkout master'
 alias gf='git fetch'
 alias gco='git checkout'
 alias ghprvw='gh pr view --web'
+alias ghrvw='gh repo view --web'
 alias ghieaddme='gh issue edit --add-assignee @me'
 alias v='nvim'
-alias ctags="`brew --prefix`/bin/ctags"
 alias vd='date +"v%y.%m.%d"'
 
 ###
@@ -112,9 +120,6 @@ export FZF_DEFAULT_COMMAND="rg --hidden --files -g '!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export PRETTIERD_LOCAL_PRETTIER_ONLY=true
-
-export DEV_SCRIPTS_DIR=~/instinct/dev_scripts
-source $DEV_SCRIPTS_DIR/init_dev_scripts.sh
 
 eval "$(mise activate zsh)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"

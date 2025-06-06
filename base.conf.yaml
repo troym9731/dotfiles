@@ -51,3 +51,6 @@
     ~/.config/ohmyposh/ohmyposh.toml: ohmyposh/ohmyposh.toml
     /usr/local/share/zsh/site-functions/async: pure_prompt/async.zsh
     /usr/local/share/zsh/site-functions/prompt_pure_setup: pure_prompt/pure.zsh
+
+- shell:
+    - [source ~/.zshrc, "Sourcing zshrc"]
