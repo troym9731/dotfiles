@@ -70,6 +70,7 @@ alias ghrvw='gh repo view --web'
 alias ghieaddme='gh issue edit --add-assignee @me'
 alias v='nvim'
 alias vd='date +"v%y.%m.%d"'
+alias jira='op run --'
 
 ###
 # History
@@ -124,3 +125,4 @@ export PRETTIERD_LOCAL_PRETTIER_ONLY=true
 eval "$(mise activate zsh)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
 export WS_GITHUB_TOKEN=$(gh auth token)
+export JIRA_API_TOKEN="op://employee/jira api token/notes"
