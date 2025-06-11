@@ -30,11 +30,6 @@ return {
 				"taplo",
 				"ts_ls",
 			},
-			handlers = {
-				function(server)
-					require("lspconfig")[server].setup({})
-				end,
-			},
 		})
 
 		local cmp = require("cmp")
@@ -56,52 +51,17 @@ return {
 			}),
 		})
 
-		require("lspconfig").gopls.setup({
-			init_options = {
-				provideFormatter = false,
-			},
-		})
-
-		require("lspconfig").html.setup({
-			init_options = {
-				provideFormatter = false,
-			},
-		})
-
-		require("lspconfig").lua_ls.setup({
-			settings = {
-				Lua = {
-					format = {
-						enable = false,
-					},
-					diagnostics = {
-						globals = { "vim" },
-					},
-				},
-			},
-		})
-
-		require("lspconfig").jsonls.setup({
-			init_options = {
-				provideFormatter = false,
-			},
-		})
-
-		require("lspconfig").taplo.setup({
-			filetypes = { "toml" },
-		})
-
-		require("lspconfig").ts_ls.setup({
-			on_attach = function(client)
-				client.server_capabilities.documentFormattingProvider = false
-				client.server_capabilities.documentRangeFormattingProvider = false
-			end,
-		})
-
+		vim.lsp.enable("gopls")
+		vim.lsp.enable("html")
+		vim.lsp.enable("lexical")
+		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("jsonls")
+		vim.lsp.enable("taplo")
+		vim.lsp.enable("ts_ls")
+		vim.lsp.enable("efm")
 		local prettierd = require("efmls-configs.formatters.prettier_d")
 		local fs = require("efmls-configs.fs")
-
-		require("lspconfig").efm.setup({
+		vim.lsp.config("efm", {
 			init_options = { documentFormatting = true },
 			settings = {
 				rootMarkers = { ".git/" },
