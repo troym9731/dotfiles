@@ -43,6 +43,7 @@
             pkgs.git
             pkgs.oh-my-posh
             pkgs.jq
+            (pkgs.llm.withPlugins { llm-anthropic = true; })
             pkgs.mise
             pkgs.neovim
             pkgs.nixfmt-rfc-style

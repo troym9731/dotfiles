@@ -7,7 +7,7 @@ return {
 				anthropic = function()
 					return require("codecompanion.adapters").extend("anthropic", {
 						env = {
-							api_key = 'cmd:op read --account https://family-mullaney.1password.com/ "op://private/anthropic api key/notes" --no-newline',
+							api_key = 'cmd:op read --account https://family-mullaney.1password.com/ "op://private/codecompanion anthropic/credential" --no-newline',
 						},
 					})
 				end,
