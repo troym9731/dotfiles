@@ -62,6 +62,7 @@ alias ghrvw='gh repo view --web'
 alias ghieaddme='gh issue edit --add-assignee @me'
 alias v='nvim'
 alias vd='date +"v%y.%m.%d"'
+alias llm='op run -- llm'
 
 ###
 # History
