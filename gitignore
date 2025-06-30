@@ -5,3 +5,5 @@ tags
 .aider*
 \[CodeCompanion\]*
 .projections.json
+.claude
+CLAUDE.md

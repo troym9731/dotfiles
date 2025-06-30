@@ -229,7 +229,7 @@
                     "yq"
                   ];
                   casks = [
-                    "docker"
+                    "docker-desktop"
                   ];
                 };
                 nix-homebrew = {
