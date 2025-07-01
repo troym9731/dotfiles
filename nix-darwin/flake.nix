@@ -41,13 +41,14 @@
             pkgs.fzf
             pkgs.gh
             pkgs.git
-            pkgs.oh-my-posh
             pkgs.jq
             (pkgs.llm.withPlugins { llm-anthropic = true; })
             pkgs.mise
             pkgs.neovim
             pkgs.nixfmt-rfc-style
+            pkgs.oh-my-posh
             pkgs.ripgrep
+            pkgs.starship
             pkgs.tldr
             pkgs.tmux
             pkgs.tree
