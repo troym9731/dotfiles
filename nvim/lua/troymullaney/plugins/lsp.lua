@@ -51,6 +51,8 @@ return {
 			}),
 		})
 
+		require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.dotfiles/snippets" })
+
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("html")
 		vim.lsp.enable("lexical")

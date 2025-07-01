@@ -49,6 +49,8 @@
       glob: true
       path: zsh/*
     ~/.config/ohmyposh/ohmyposh.toml: ohmyposh/ohmyposh.toml
+    ~/.config/starship.toml: starship/starship.toml
+    ~/.claude/CLAUDE.md: claude/_CLAUDE.md
     /usr/local/share/zsh/site-functions/async: pure_prompt/async.zsh
     /usr/local/share/zsh/site-functions/prompt_pure_setup: pure_prompt/pure.zsh
 

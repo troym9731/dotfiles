@@ -1,0 +1,59 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+continuation_prompt = '⟢⟢'
+
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$fill\
+$cmd_duration\
+$kubernetes\
+$aws\
+$line_break\
+$character"""
+
+[directory]
+style = "blue"
+truncate_to_repo = false
+
+[git_branch]
+format = "[$branch]($style)"
+style = "#6c6c6c"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style)"
+style = 'purple'
+modified = '*'
+staged = '[✓](green)'
+ahead = '[⇡](cyan)'
+behind = '[⇣](cyan)'
+diverged = '[⇕](cyan)'
+
+[character]
+success_symbol = '[⟢](green)'
+error_symbol = "[✗](red)"
+
+[fill]
+symbol = ' '
+
+[cmd_duration]
+min_time = 200
+format = "[$duration]($style) "
+style = "yellow"
+show_milliseconds = true
+
+[kubernetes]
+disabled = false
+format = '[$symbol$context]($style) '
+style = 'cyan'
+contexts = [
+  { context_pattern = "docker-desktop", symbol = '', context_alias = '' },
+]
+
+[aws]
+disabled = false
+format = '[($profile )(\($region\) )(\[$duration\] )]($style)'
+style = '#ff9900'

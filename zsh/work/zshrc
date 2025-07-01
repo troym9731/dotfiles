@@ -44,6 +44,7 @@ source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlight
 
 export DEV_SCRIPTS_DIR=~/instinct/dev_scripts
 source $DEV_SCRIPTS_DIR/init_dev_scripts.sh
+export PATH="$PATH:$DEV_SCRIPTS_DIR/scripts"
 
 ###
 # Aliases
@@ -124,7 +125,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export PRETTIERD_LOCAL_PRETTIER_ONLY=true
 
 eval "$(mise activate zsh)"
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
+eval "$(starship init zsh)"
 
 # Final environment variables
 export WS_GITHUB_TOKEN=$(gh auth token)
