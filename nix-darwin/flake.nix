@@ -227,6 +227,7 @@
                     "kubectl"
                     "mkcert"
                     "postgresql"
+                    "repomix"
                     "yq"
                   ];
                   casks = [

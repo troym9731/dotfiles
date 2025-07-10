@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# jfp - cache jira parent issue
+
+jfp () {
+  local issue_key
+
+  if [[ -n "$1" ]]; then
+    issue_key="$1"
+  else
+    # Extract issue key from current branch name (e.g., feature/PF-123-branch-name)
+    current_branch=$(git rev-parse --abbrev-ref HEAD)
+    issue_key=$(echo "$current_branch" | grep -o '[A-Z]\+-[0-9]\+')
+
+    if [[ -z "$issue_key" ]]; then
+      echo "Usage: jfp <issue-key> or run from a branch with format feature/PF-XXX-branch-name"
+      return 1
+    fi
+
+    echo "Extracted issue key: $issue_key"
+  fi
+
+  tmpfile=$(mktemp)
+  op run -- jira issue view "$issue_key" --raw > "$tmpfile"
+  is_subtask=$(jq -r '.fields.issuetype.subtask' "$tmpfile")
+
+  if [[ "$is_subtask" == "true" ]]; then
+    parent=$(jq -r '.fields.parent.key' "$tmpfile")
+    if [[ -n "$parent" ]]; then
+      echo "$parent" > .git/jira-parent-cache
+      echo "Cached parent issue: $parent"
+    fi
+  else
+    echo "Issue $issue_key is not a subtask"
+  fi
+
+  rm "$tmpfile"
+}
+
+jfp "$1"
