@@ -32,15 +32,6 @@ autoload -Uz compinit && compinit
 autoload -U promptinit; promptinit
 
 ###
-# Highlighting
-###
-
-source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-
-###
 # Aliases
 ###
 
@@ -65,7 +56,6 @@ alias ghrvw='gh repo view --web'
 alias ghieaddme='gh issue edit --add-assignee @me'
 alias v='nvim'
 alias vd='date +"v%y.%m.%d"'
-alias llm='op run -- llm'
 
 ###
 # History
@@ -121,3 +111,13 @@ eval "$(starship init zsh)"
 # Final environment variables
 export ANTHROPIC_API_KEY="op://private/llm cli/credential"
 export ELIXIR_ERL_OPTIONS="-kernel shell_history enabled"
+source ~/.config/.env
+
+###
+# Highlighting (needs to be last)
+###
+
+source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]=none
+ZSH_HIGHLIGHT_STYLES[path_prefix]=none

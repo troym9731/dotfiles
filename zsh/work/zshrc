@@ -23,22 +23,19 @@ zstyle ':completion:*' menu select
 # Init Zsh
 ###
 
-autoload -Uz compinit && compinit
+# Cache completions aggressively
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 
 ###
 # Theme
 ###
 
 autoload -U promptinit; promptinit
-
-###
-# Highlighting
-###
-
-source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 ###
 # Dev Scripts sourcing
@@ -73,8 +70,6 @@ alias ghrvw='gh repo view --web'
 alias ghieaddme='gh issue edit --add-assignee @me'
 alias v='nvim'
 alias vd='date +"v%y.%m.%d"'
-alias jira='op run -- jira'
-alias llm='op run -- llm'
 
 ###
 # History
@@ -131,6 +126,15 @@ eval "$(starship init zsh)"
 
 # Final environment variables
 export WS_GITHUB_TOKEN=$(gh auth token)
-export JIRA_API_TOKEN="op://work/jira cli/credential"
-export ANTHROPIC_API_KEY="op://private/llm cli/credential"
 export ELIXIR_ERL_OPTIONS="-kernel shell_history enabled"
+source ~/.config/.env
+
+###
+# Highlighting (needs to be last)
+###
+
+source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]=none
+ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+

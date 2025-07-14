@@ -1,24 +1,29 @@
 ---
-description: Review local git changes including staged and unstaged modifications with code quality feedback
-allowed-tools: ["Task"]
+description: Review local git changes including staged and unstaged modifications with code quality feedback across all git repos in subdirectories
+allowed-tools: ["Task", "Bash", "LS"]
 ---
 
-# Git Changes Review with Dual Analysis
+# Comprehensive Git Changes Review with Dual Analysis
 
-I'll analyze your git changes using two independent subagents who will then compare their findings to provide a unified, comprehensive code review.
+I'll analyze your git changes using two independent subagents who will then compare their findings to provide a unified, comprehensive code review. This will search all subdirectories for git repositories and analyze changes across all of them.
 
-## Current Git Status
-!git status
+## Finding All Git Repositories
+First, let me discover all git repositories in the current directory and subdirectories:
 
-## Staged Changes
-!git diff --cached
+!find . -type d -name ".git" | head -20
 
-## Unstaged Changes
-!git diff
+## Comprehensive Git Analysis
+Now I'll analyze changes across all discovered repositories:
 
-## Recent Commits for Context
-!git log --oneline -10
+For each repository found, I'll check:
+- Current git status
+- Staged changes (git diff --cached)
+- Unstaged changes (git diff)  
+- Recent commits for context
 
+Let me gather all this information systematically across all repositories.
+
+## Analysis Results
 Now I'll spawn two subagents to independently analyze these changes:
 
 **Subagent 1 - Independent Review:**
