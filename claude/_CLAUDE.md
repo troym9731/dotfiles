@@ -61,3 +61,15 @@ Task 4: Testing Agent - Identify test requirements
 - **Reduce Sequential Dependencies**: Break down tasks to minimize waiting for previous steps
 - **Intelligent Task Distribution**: Route tasks to the most appropriate subagent type
 - **Resource Efficiency**: Balance subagent count with system resources and API limits
+
+## JIRA
+Use the Atlassian/JIRA MCP to lookup ticket information in JIRA.
+
+When creating tasks for tickets, they should be JIRA sub-tasks (make sure to inlcude the parent key). The correct `issueTypeName` is `Sub-task`.
+
+To close a ticket , it can be transitioned to status `41`.
+
+Usually I always want to reference a JIRA ticket when building a plan. All the context is there. Please remind me about this if I forget it in a session.
+
+Please use the ./plans folder to find and store all plans for tickets.
+For any prompt that includes a JIRA ticket number (like `PF-1234` or `ITP-1234`), please lookup the plan in the `./plans` project. If there is no plan yet, I want to store our plan in that project and work off of it.

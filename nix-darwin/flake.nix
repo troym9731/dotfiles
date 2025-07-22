@@ -37,6 +37,7 @@
             pkgs.cloc
             pkgs.efm-langserver
             pkgs.fd
+            pkgs.fish
             pkgs.fx
             pkgs.fzf
             pkgs.gh

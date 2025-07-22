@@ -64,21 +64,35 @@ return {
 			vim.keymap.set("n", "<leader>b", builtin.buffers, { silent = true })
 			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { silent = true })
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { silent = true })
-			vim.keymap.set("n", "<leader>o", builtin.find_files, { silent = true })
+			vim.keymap.set("n", "<leader>o", function()
+				builtin.find_files({
+					find_command = {
+						"fd",
+						"--type",
+						"f",
+						"--hidden",
+						"--exclude",
+						"node_modules",
+						"--exclude",
+						".git",
+					},
+				})
+			end, { silent = true })
 			vim.keymap.set("n", "<leader>l", builtin.live_grep, { silent = true })
 			vim.keymap.set("n", "<leader>e", fb.file_browser, { silent = true })
 			vim.keymap.set("n", "<leader>fj", builtin.git_status, { silent = true })
 			vim.keymap.set("n", "<leader>ff", function()
 				builtin.find_files({
 					find_command = {
-						"rg",
-						"--files",
+						"fd",
+						"--type",
+						"f",
 						"--hidden",
 						"--no-ignore",
-						"--glob",
-						"!**/node_modules/**",
-						"--glob",
-						"!**/.git/**",
+						"--exclude",
+						"node_modules",
+						"--exclude",
+						".git",
 					},
 				})
 			end, { silent = true })
