@@ -53,8 +53,8 @@ alias ..='cd ..'
 alias clear='printf "\033[H\033[2J"'
 alias ls='ls -G'
 alias la='ls -lAh'
-alias gpsup='git push --set-upstream origin $(git_current_branch)'
-alias ggpush='git push origin $(git_current_branch)'
+alias gpsup='git push --set-upstream origin HEAD'
+alias ggpush='git push origin HEAD'
 alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
 alias gst='git status'
@@ -115,8 +115,8 @@ export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agen
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-# Change the default fzf command to use ripgrep
-export FZF_DEFAULT_COMMAND="rg --hidden --files -g '!.git'"
+# Change the default fzf command to use fd
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --no-ignore --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export PRETTIERD_LOCAL_PRETTIER_ONLY=true

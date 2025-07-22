@@ -10,6 +10,7 @@ return {
 					"dockerfile",
 					"elixir",
 					"elm",
+					"fish",
 					"go",
 					"gomod",
 					"html",

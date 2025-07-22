@@ -99,8 +99,8 @@ eval "$(zoxide init zsh)"
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-# Change the default fzf command to use ripgrep
-export FZF_DEFAULT_COMMAND="rg --hidden --files -g '!.git'"
+# Change the default fzf command to use fd
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --no-ignore --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export PRETTIERD_LOCAL_PRETTIER_ONLY=true

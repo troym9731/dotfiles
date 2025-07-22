@@ -51,6 +51,7 @@
     ~/.config/ohmyposh/ohmyposh.toml: ohmyposh/ohmyposh.toml
     ~/.config/starship.toml: starship/starship.toml
     ~/.claude/CLAUDE.md: claude/_CLAUDE.md
+    ~/.claude/settings.json: claude/settings.json
     ~/.claude/commands/:
       glob: true
       path: claude/commands/*

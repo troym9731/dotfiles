@@ -5,6 +5,9 @@
 
 - link:
     ~/.zshrc: zsh/work/zshrc
+    ~/.config/fish/config.fish:
+      path: fish/work/config.fish
+      force: true
     ~/.gitconfig: git/work/gitconfig
     ~/.config/mise/config.toml: mise/work/config.toml
     ~/.aws/config: aws/work/config

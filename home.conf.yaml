@@ -5,6 +5,9 @@
 
 - link:
     ~/.zshrc: zsh/home/zshrc
+    ~/.config/fish/config.fish:
+      path: fish/home/config.fish
+      force: true
     ~/.gitconfig: git/home/gitconfig
     ~/.config/mise/config.toml: mise/home/config.toml
     ~/.aider.conf.yml: aider/conf.yml
