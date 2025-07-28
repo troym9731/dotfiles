@@ -32,6 +32,9 @@ jfp () {
     fi
   else
     echo "Issue $issue_key is not a subtask"
+    # Clear the cache since there's no parent
+    > .git/jira-parent-cache
+    echo "Cleared parent cache"
   fi
 
   rm "$tmpfile"
