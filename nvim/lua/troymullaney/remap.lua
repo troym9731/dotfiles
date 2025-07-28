@@ -34,6 +34,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "elixir",
 	callback = function()
 		-- Disable some problematic indent triggers
-		vim.bo.indentkeys = "0{,0},0),0],!^F,o,O,e" -- Remove > and | from indent keys
+		vim.bo.indentkeys = "0},0),0],!^F,o,O,e" -- Remove >, {, and | from indent keys
 	end,
 })
