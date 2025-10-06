@@ -1,0 +1,77 @@
+#!/bin/bash
+
+# Script to switch to the branch where a git stash was made
+# Usage: ./stash-branch-switch.sh [stash_number]
+# Default: uses stash@{0} (top stash)
+
+# Set up colors if tput is available, otherwise no colors
+if command -v tput &> /dev/null && [ -t 1 ]; then
+    RED=$(tput setaf 1)
+    GREEN=$(tput setaf 2)
+    BLUE=$(tput setaf 4)
+    YELLOW=$(tput setaf 3)
+    NC=$(tput sgr0)
+else
+    # No colors if tput isn't available
+    RED=""
+    GREEN=""
+    BLUE=""
+    YELLOW=""
+    NC=""
+fi
+
+# Get stash number from argument, default to 0
+STASH_NUM="${1:-0}"
+
+# Validate that the argument is a non-negative integer
+if ! [[ "$STASH_NUM" =~ ^[0-9]+$ ]]; then
+    echo "${RED}Error: Invalid stash number. Please provide a non-negative integer.${NC}" >&2
+    exit 1
+fi
+
+# Check if git is available and we're in a git repository
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "${RED}Error: Not in a git repository.${NC}" >&2
+    exit 1
+fi
+
+# Check if ripgrep is available
+if ! command -v rg &> /dev/null; then
+    echo "${RED}Error: ripgrep (rg) is not installed.${NC}" >&2
+    exit 1
+fi
+
+# Get stash information
+STASH_INFO=$(git stash list 2>&1 | rg "^stash@\{${STASH_NUM}\}:" | head -1)
+
+if [ -z "$STASH_INFO" ]; then
+    echo "${RED}Error: stash@{${STASH_NUM}} does not exist.${NC}" >&2
+    exit 1
+fi
+
+# Extract the branch name from the stash info
+# Git stash format: stash@{N}: WIP on branch_name: commit_hash commit_message
+# or: stash@{N}: On branch_name: stash_message
+BRANCH=$(echo "$STASH_INFO" | rg -o '(WIP on|On) ([^:]+):' -r '$2')
+
+if [ -z "$BRANCH" ]; then
+    echo "${RED}Error: Could not determine branch from stash@{${STASH_NUM}}.${NC}" >&2
+    exit 1
+fi
+
+# Log the found branch
+echo "${GREEN}Found branch:${NC} ${BLUE}${BRANCH}${NC}"
+
+# Check if the branch exists
+if ! git show-ref --verify --quiet "refs/heads/$BRANCH"; then
+    echo "${RED}Error: Branch '${BRANCH}' does not exist.${NC}" >&2
+    exit 1
+fi
+
+# Switch to the branch (let git checkout log normally)
+if ! git checkout "$BRANCH"; then
+    echo "${RED}Error: Failed to switch to branch '${BRANCH}'.${NC}" >&2
+    exit 1
+fi
+
+exit 0

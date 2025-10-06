@@ -65,6 +65,7 @@ alias gds='git diff --staged'
 alias gcm='git checkout master'
 alias gf='git fetch'
 alias gco='git checkout'
+alias gcop='git checkout us-east-1-practice'
 alias ghprvw='gh pr view --web'
 alias ghrvw='gh repo view --web'
 alias ghieaddme='gh issue edit --add-assignee @me'
@@ -123,6 +124,12 @@ export PRETTIERD_LOCAL_PRETTIER_ONLY=true
 
 eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
+
+###
+# Atuin
+###
+
+eval "$(atuin init zsh --disable-up-arrow)"
 
 # Final environment variables
 export WS_GITHUB_TOKEN=$(gh auth token)
