@@ -21,6 +21,7 @@ return {
 					"markdown_inline",
 					"nix",
 					"ruby",
+					"rust",
 					"sql",
 					"terraform",
 					"toml",

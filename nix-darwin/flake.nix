@@ -31,6 +31,7 @@
           # $ nix-env -qaP | grep wget
           environment.systemPackages = [
             pkgs.alacritty
+            pkgs.atuin
             pkgs.bat
             pkgs.bottom
             pkgs.claude-code
@@ -222,6 +223,7 @@
                 homebrew = {
                   brews = [
                     "asdf"
+                    "cmake"
                     "gum"
                     "helm"
                     "jira-cli"

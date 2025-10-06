@@ -5,6 +5,7 @@ go = '1.23'
 node = '22'
 python = '3.13'
 ruby = '3.2.1'
+rust = '1.85'
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby"]

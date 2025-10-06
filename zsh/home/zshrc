@@ -108,6 +108,12 @@ export PRETTIERD_LOCAL_PRETTIER_ONLY=true
 eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
 
+###
+# Atuin
+###
+
+eval "$(atuin init zsh --disable-up-arrow)"
+
 # Final environment variables
 export ANTHROPIC_API_KEY="op://private/llm cli/credential"
 export ELIXIR_ERL_OPTIONS="-kernel shell_history enabled"

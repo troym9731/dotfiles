@@ -27,6 +27,7 @@ return {
 				"html",
 				"jsonls",
 				"lua_ls",
+				"rust_analyzer",
 				"taplo",
 				"ts_ls",
 			},
@@ -58,6 +59,7 @@ return {
 		vim.lsp.enable("lexical")
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("jsonls")
+		vim.lsp.enable("rust_analyzer")
 		vim.lsp.enable("taplo")
 		vim.lsp.enable("ts_ls")
 		vim.lsp.enable("efm")
@@ -91,6 +93,9 @@ return {
 						require("efmls-configs.formatters.nixfmt"),
 					},
 					ruby = { prettierd },
+					rust = {
+						require("efmls-configs.formatters.rustfmt"),
+					},
 					toml = {
 						require("efmls-configs.formatters.taplo"),
 					},

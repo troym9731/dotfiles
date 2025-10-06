@@ -8,12 +8,12 @@ jfp () {
   if [[ -n "$1" ]]; then
     issue_key="$1"
   else
-    # Extract issue key from current branch name (e.g., feature/PF-123-branch-name)
+    # Extract issue key from current branch name (e.g., feature/ABC-123-branch-name)
     current_branch=$(git rev-parse --abbrev-ref HEAD)
     issue_key=$(echo "$current_branch" | grep -o '[A-Z]\+-[0-9]\+')
 
     if [[ -z "$issue_key" ]]; then
-      echo "Usage: jfp <issue-key> or run from a branch with format feature/PF-XXX-branch-name"
+      echo "Usage: jfp <issue-key> or run from a branch with format feature/ABC-XXX-branch-name"
       return 1
     fi
 
@@ -21,7 +21,7 @@ jfp () {
   fi
 
   tmpfile=$(mktemp)
-  op run -- jira issue view "$issue_key" --raw > "$tmpfile"
+  jira issue view "$issue_key" --raw > "$tmpfile"
   is_subtask=$(jq -r '.fields.issuetype.subtask' "$tmpfile")
 
   if [[ "$is_subtask" == "true" ]]; then
