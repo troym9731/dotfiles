@@ -43,7 +43,6 @@ autoload -U promptinit; promptinit
 
 export DEV_SCRIPTS_DIR=~/instinct/dev_scripts
 source $DEV_SCRIPTS_DIR/init_dev_scripts.sh
-export PATH="$PATH:$DEV_SCRIPTS_DIR/scripts"
 
 ###
 # Aliases
@@ -62,7 +61,7 @@ alias gstl='git stash list'
 alias gcp='git cherry-pick'
 alias gd='git diff'
 alias gds='git diff --staged'
-alias gcm='git checkout master'
+alias gcm='git checkout master 2>/dev/null || git checkout main'
 alias gf='git fetch'
 alias gco='git checkout'
 alias gcop='git checkout us-east-1-practice'

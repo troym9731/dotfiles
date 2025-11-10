@@ -31,7 +31,7 @@ output = json
 
 [profile instinct-prod]
 sso_account_id = 932418557441
-sso_role_name = EngineeringAccess
+sso_role_name = AdministratorAccess
 sso_start_url = https://d-9067bf4e68.awsapps.com/start
 sso_region = us-east-1
 region = us-east-1
