@@ -71,7 +71,7 @@
               "coreutils"
               "gpg"
               "libyaml"
-              "openssl"
+              "openssl@3.5"
               # Standard brews
               "awscli"
               "gnu-sed"

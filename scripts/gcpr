@@ -1,0 +1,174 @@
+#!/bin/sh
+#
+# Create a pull request.
+#
+# Creates a pull request tied to a Jira issue using the GitHub CLI and the
+# configured repository PULL_REQUEST_TEMPLATE.
+#
+# Prompts the user for the following:
+#
+# 1. Jira issue
+# 2. Base branch
+# 3. Reviewing team
+#
+# The script will construct a pull request body using the repository's pull
+# request template. It will replace any `[ITP-xxxx]` placeholders in the
+# template with the key from the Jira issue selected.
+#
+# In addition, it will also append any commit messages to the body (under a
+# `## Commits` heading) so that they can be referred to when writing the pull
+# request description.
+#
+# The script will then open the configured `$EDITOR` so that the rest of the
+# pull request body can be modified. Once the changes are saved, the pull
+# request is created using the GitHub CLI.
+#
+# In the event the repository does not have a pull request template, a default
+# one will be used.
+#
+# USAGE:
+#   git create-pull-request
+#
+# OPTIONS:
+#   Optionally set a DEBUG environment variable to enable tracing.
+#     $ DEBUG=1 git create-pull-request
+#
+
+# -e: Exit immediately on error
+# -u: Treat unset variables as errors
+set -eu
+
+# For debugging via an environment variable
+case "${DEBUG-}" in
+  1 | yes | true) set -x ;;
+esac
+
+# Ensure dependencies are installed
+. "${DEV_SCRIPTS_DIR}/installers/gh.sh"
+. "${DEV_SCRIPTS_DIR}/installers/gum.sh"
+. "${DEV_SCRIPTS_DIR}/installers/jira.sh"
+
+if ! ensure_gh; then
+  echo "Error: Failed to install required tool 'gh'"
+  return 1
+fi
+
+if ! ensure_gum; then
+  echo "Error: Failed to install required tool 'gum'"
+  return 1
+fi
+
+if ! ensure_jira; then
+  echo "Error: Failed to install required tool 'jira'"
+  return 1
+fi
+
+if ! command -v jira me >/dev/null 2>&1; then
+  echo "Error: Jira CLI is not configured. Run 'jira init'." >&2
+  exit 1
+fi
+
+# Grab all issues assigned to the user currently in dev from Jira and have
+# them select one.
+issues=$(jira issue list \
+  --assignee "$(jira me)" \
+  --jql 'resolution IS EMPTY' \
+  --columns key,summary \
+  --plain \
+  --no-headers)
+
+selected_issue=$(echo "$issues" | gum choose)
+
+# Extract Jira issue key and summary.
+key=$(echo "$selected_issue" | awk '{print $1}')
+# Strip bracketed prefixes like [BE], [FE] from the title
+title=$(echo "$selected_issue" | awk '{$1=""; print $0}' | sed 's/^ *//' | sed 's/\[[^]]*\] *//')
+
+# Grab all local branch names and have user select one to use as the base
+# branch for the pull request.
+current_branch=$(git symbolic-ref --short HEAD)
+base_branch=$(
+  git branch --list --no-color --format="%(refname:short)" |
+    grep -v "^$current_branch$" |
+    gum choose --header "Choose a base branch: "
+)
+
+# Get all the commits associated with this PR
+commits=$(
+  git -c log.showSignature=false log \
+    --pretty=format:%s%n%b%x00 \
+    --cherry "$base_branch"..."$current_branch"
+)
+
+# Extract parent issue if present in commit messages
+# Look for pattern like [ITP-1234][ITP-5678] where first is parent, second is child
+parent_issue=""
+if echo "$commits" | grep -q "\[\([A-Z]\+-[0-9]\+\)\]\[$key\]"; then
+  parent_issue=$(echo "$commits" | grep -o "\[[A-Z]\+-[0-9]\+\]\[$key\]" | sed "s/\[$key\]$//" | sed 's/^\[//' | sed 's/\]$//' | head -1)
+fi
+
+# Build the PR body
+template_file=".github/pull_request_template.md"
+
+default_template="# [ITP-xxxx]
+## Purpose
+
+## Changes
+
+## Concerns
+
+## Deploy Considerations
+"
+
+if [ -f "$template_file" ]; then
+  template_content=$(cat "$template_file")
+else
+  template_content="$default_template"
+fi
+
+processed_body=$(
+  # Add "Part of [parent_issue]" if parent issue exists
+  if [ -n "$parent_issue" ]; then
+    echo "Part of [$parent_issue]"
+    echo ""
+  fi
+  echo "$template_content" | sed "s/\[ITP-xxxx\]/[$key]/g"
+  echo ""
+  echo "## Commits"
+  printf '%s\n' "$commits" | tr '\0' '\n'
+)
+
+tmpfile=$(mktemp /tmp/pr_body.XXXXXX) || {
+  echo "Failed to create temp file"
+  exit 1
+}
+echo "$processed_body" >"$tmpfile"
+
+# Construct PR title with parent issue if available
+if [ -n "$parent_issue" ]; then
+  pr_title="[$parent_issue][$key] $title"
+else
+  pr_title="[$key] $title"
+fi
+
+# Ask if user wants to create a draft PR
+is_draft=$(gum confirm "Create as draft pull request?" && echo "true" || echo "false")
+
+# Build the gh pr create command with optional draft flag
+if [ "$is_draft" = "true" ]; then
+  gh pr create \
+    --base "$base_branch" \
+    --title "$pr_title" \
+    --body-file "$tmpfile" \
+    --draft \
+    --editor
+else
+  gh pr create \
+    --base "$base_branch" \
+    --title "$pr_title" \
+    --body-file "$tmpfile" \
+    --editor
+fi
+
+# Clean up the temporary file
+rm -f "$tmpfile"
