@@ -25,6 +25,9 @@
       path: atuin/*
       force: true
     ~/.config/ghostty/config: ghostty/config
+    ~/.config/ghostty/themes/:
+      glob: true
+      path: ghostty/themes/*
     ~/.config/alacritty/:
       glob: true
       path: alacritty/*
