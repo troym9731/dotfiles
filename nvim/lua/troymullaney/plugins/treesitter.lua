@@ -8,11 +8,13 @@ return {
 				-- A list of parser names, or 'all'
 				ensure_installed = {
 					"dockerfile",
+					"eex",
 					"elixir",
 					"elm",
 					"fish",
 					"go",
 					"gomod",
+					"heex",
 					"html",
 					"javascript",
 					"json",
