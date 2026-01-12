@@ -43,6 +43,7 @@
             pkgs.fzf
             pkgs.gh
             pkgs.git
+            pkgs.git-filter-repo
             pkgs.jq
             (pkgs.llm.withPlugins { llm-anthropic = true; })
             pkgs.mise
@@ -75,6 +76,7 @@
               # Standard brews
               "awscli"
               "gnu-sed"
+              "luarocks"
               "mas"
               "reattach-to-user-namespace"
             ];
