@@ -23,6 +23,7 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
+				"expert",
 				"gopls",
 				"html",
 				"jsonls",
@@ -56,7 +57,7 @@ return {
 
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("html")
-		vim.lsp.enable("lexical")
+		vim.lsp.enable("expert")
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("jsonls")
 		vim.lsp.enable("rust_analyzer")
