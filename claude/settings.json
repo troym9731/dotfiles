@@ -16,5 +16,9 @@
       "~/instinct/claude_plans",
       "~/instinct/claude_downloads"
     ]
+  },
+  "alwaysThinkingEnabled": false,
+  "enabledPlugins": {
+    "compound-engineering@every-marketplace": true
   }
 }

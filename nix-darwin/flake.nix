@@ -48,8 +48,9 @@
             (pkgs.llm.withPlugins { llm-anthropic = true; })
             pkgs.mise
             pkgs.neovim
-            pkgs.nixfmt-rfc-style
+            pkgs.nixfmt
             pkgs.oh-my-posh
+            pkgs.pgcli
             pkgs.ripgrep
             pkgs.starship
             pkgs.tldr
@@ -222,12 +223,14 @@
                   "/Applications/Spotify.app"
                   "/Applications/Ghostty.app"
                 ];
+                environment.systemPackages = [
+                  pkgs.kubernetes-helm
+                ];
                 homebrew = {
                   brews = [
                     "asdf"
                     "cmake"
                     "gum"
-                    "helm"
                     "jira-cli"
                     "kubectl"
                     "mkcert"
