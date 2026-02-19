@@ -227,9 +227,13 @@
                   pkgs.kubernetes-helm
                 ];
                 homebrew = {
+                  taps = [
+                    "datadog-labs/pack"
+                  ];
                   brews = [
                     "asdf"
                     "cmake"
+                    "datadog-labs/pack/pup"
                     "gum"
                     "jira-cli"
                     "kubectl"
