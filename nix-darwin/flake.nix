@@ -190,6 +190,7 @@
                 ];
                 environment.systemPackages = [
                   pkgs.hugo
+                  pkgs.yt-dlp
                 ];
                 homebrew = {
                   casks = [
