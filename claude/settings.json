@@ -1,24 +1,26 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "permissions": {
     "allow": [
-      "Bash(rg:*)",
-      "Bash(find:*)",
-      "Bash(fd:*)",
-      "Bash(grep:*)",
-      "Bash(ls:*)",
+      "Bash(rg *)",
+      "Bash(find *)",
+      "Bash(fd *)",
+      "Bash(grep *)",
+      "Bash(ls *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh pr list *)",
       "Read(~/.claude/**)",
-      "Bash(git diff:*)",
-      "Bash(git log:*)",
-      "mcp__sequential-thinking__sequentialthinking"
+      "Read(~/instinct/**)"
     ],
     "deny": [],
-    "additionalDirectories": [
-      "~/instinct/claude_plans",
-      "~/instinct/claude_downloads"
-    ]
+    "additionalDirectories": []
   },
-  "enabledPlugins": {
-    "compound-engineering@every-marketplace": true
-  },
-  "alwaysThinkingEnabled": false
+  "enabledPlugins": {},
+  "alwaysThinkingEnabled": true
 }

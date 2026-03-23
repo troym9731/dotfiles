@@ -81,8 +81,10 @@ selected_issue=$(echo "$issues" | gum choose)
 
 # Extract Jira issue key and summary.
 key=$(echo "$selected_issue" | awk '{print $1}')
-# Strip bracketed prefixes like [BE], [FE] from the title
-title=$(echo "$selected_issue" | awk '{$1=""; print $0}' | sed 's/^ *//' | sed 's/\[[^]]*\] *//')
+# Use the latest commit's subject line as the PR title, stripping any
+# leading issue key prefix(es) to avoid duplication in the PR title.
+raw_title=$(git log -1 --pretty=format:%s)
+title=$(echo "$raw_title" | gsed 's/^\(\[[A-Z]\+-[0-9]\+\]\)\+[[:space:]]*//')
 
 # Grab all local branch names and have user select one to use as the base
 # branch for the pull request.
@@ -100,11 +102,13 @@ commits=$(
     --cherry "$base_branch"..."$current_branch"
 )
 
-# Extract parent issue if present in commit messages
-# Look for pattern like [ITP-1234][ITP-5678] where first is parent, second is child
+# Extract parent issue if the commit title has [PARENT][CHILD] format
 parent_issue=""
-if echo "$commits" | grep -q "\[\([A-Z]\+-[0-9]\+\)\]\[$key\]"; then
-  parent_issue=$(echo "$commits" | grep -o "\[[A-Z]\+-[0-9]\+\]\[$key\]" | sed "s/\[$key\]$//" | sed 's/^\[//' | sed 's/\]$//' | head -1)
+if echo "$raw_title" | grep -q '^\[[A-Z]\+-[0-9]\+\]\[[A-Z]\+-[0-9]\+\]'; then
+  parent_issue=$(echo "$raw_title" | sed 's/^\[\([A-Z]\+-[0-9]\+\)\].*/\1/')
+  if [ "$parent_issue" = "$key" ]; then
+    parent_issue=""
+  fi
 fi
 
 # Build the PR body

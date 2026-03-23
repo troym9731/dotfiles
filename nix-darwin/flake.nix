@@ -80,6 +80,7 @@
               "luarocks"
               "mas"
               "reattach-to-user-namespace"
+              "sox"
             ];
             casks = [
               "1password"
@@ -223,6 +224,7 @@
                   "/Applications/Google Chrome.app"
                   "/Applications/Spotify.app"
                   "/Applications/Ghostty.app"
+                  "/Applications/Slack.app"
                 ];
                 environment.systemPackages = [
                   pkgs.kubernetes-helm
@@ -239,7 +241,7 @@
                     "jira-cli"
                     "kubectl"
                     "mkcert"
-                    "postgresql"
+                    "postgresql@18"
                     "repomix"
                     "yq"
                   ];

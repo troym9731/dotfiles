@@ -17,7 +17,6 @@ window-height = 1000000
 window-width = 1000000
 
 # Search entire scrollback history in default text editor
-keybind = cmd+f=write_screen_file:open
 keybind = ctrl+space>\=new_split:right
 keybind = ctrl+space>-=new_split:down
 keybind = ctrl+space>l=previous_tab

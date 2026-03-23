@@ -67,6 +67,20 @@ return {
 		local prettierd = require("efmls-configs.formatters.prettier_d")
 		local fs = require("efmls-configs.fs")
 		vim.lsp.config("efm", {
+			filetypes = {
+				"elixir",
+				"go",
+				"javascript",
+				"javascriptreact",
+				"json",
+				"lua",
+				"nix",
+				"ruby",
+				"rust",
+				"toml",
+				"typescript",
+				"typescriptreact",
+			},
 			init_options = { documentFormatting = true },
 			settings = {
 				rootMarkers = { ".git/" },
