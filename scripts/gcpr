@@ -105,7 +105,7 @@ commits=$(
 # Extract parent issue if the commit title has [PARENT][CHILD] format
 parent_issue=""
 if echo "$raw_title" | grep -q '^\[[A-Z]\+-[0-9]\+\]\[[A-Z]\+-[0-9]\+\]'; then
-  parent_issue=$(echo "$raw_title" | sed 's/^\[\([A-Z]\+-[0-9]\+\)\].*/\1/')
+  parent_issue=$(echo "$raw_title" | gsed 's/^\[\([A-Z]\+-[0-9]\+\)\].*/\1/')
   if [ "$parent_issue" = "$key" ]; then
     parent_issue=""
   fi

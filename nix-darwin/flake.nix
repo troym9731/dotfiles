@@ -36,6 +36,7 @@
             pkgs.bottom
             pkgs.claude-code
             pkgs.cloc
+            pkgs.codex
             pkgs.efm-langserver
             pkgs.fd
             pkgs.fish
@@ -103,7 +104,10 @@
             };
           };
 
-          fonts.packages = [ pkgs.nerd-fonts.hasklug ];
+          fonts.packages = [
+            pkgs.nerd-fonts.hasklug
+            pkgs.nerd-fonts.symbols-only
+          ];
 
           programs.zsh = {
             enable = true;

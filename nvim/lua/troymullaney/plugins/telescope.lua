@@ -29,11 +29,26 @@ return {
 		config = function()
 			local fb = require("telescope").extensions.file_browser
 
+			local spaced_path_display = function(opts, path)
+				local truncated = require("telescope.utils").transform_path(
+					{ path_display = { "truncate" }, cwd = opts.cwd },
+					path
+				)
+				return " " .. truncated
+			end
+
 			require("telescope").setup({
 				defaults = {
 					layout_config = { prompt_position = "top" },
 					sorting_strategy = "ascending",
 					path_display = { "truncate" },
+				},
+				pickers = {
+					find_files = { path_display = spaced_path_display },
+					live_grep = { path_display = spaced_path_display },
+					buffers = { path_display = spaced_path_display },
+					git_status = { path_display = spaced_path_display },
+					diagnostics = { path_display = spaced_path_display },
 				},
 				extensions = {
 					file_browser = {
