@@ -8,3 +8,15 @@ web_search = "cached"
 [features]
 multi_agent = true
 shell_tool = true
+
+[projects."/Users/troymullaney/instinct/chunky-kong"]
+trust_level = "trusted"
+
+[projects."/Users/troymullaney/instinct/kong-fu"]
+trust_level = "trusted"
+
+[sandbox_workspace_write]
+writable_roots = ["~/instinct/claude_plans", "~/instinct/claude_downloads"]
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"

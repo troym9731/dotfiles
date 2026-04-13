@@ -134,14 +134,6 @@ return {
 			end,
 		})
 
-		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-			underline = false,
-			-- signs = {
-			-- 	severity = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR },
-			-- },
-			-- virtual_text = {
-			-- 	severity = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR },
-			-- },
-		})
+		vim.diagnostic.config({ underline = false })
 	end,
 }

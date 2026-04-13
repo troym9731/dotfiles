@@ -37,6 +37,7 @@
             pkgs.claude-code
             pkgs.cloc
             pkgs.codex
+            pkgs.difftastic
             pkgs.efm-langserver
             pkgs.fd
             pkgs.fish
