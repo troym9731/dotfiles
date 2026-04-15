@@ -58,6 +58,7 @@
             pkgs.tldr
             pkgs.tmux
             pkgs.tree
+            pkgs.tree-sitter
             pkgs.vim
             pkgs.wget
             pkgs.zoxide
@@ -92,6 +93,7 @@
               "firefox"
               "ghostty"
               "google-chrome"
+              "hammerspoon"
               "kap"
               "raycast"
               "slack"
@@ -201,7 +203,6 @@
                 homebrew = {
                   casks = [
                     "discord"
-                    "microsoft-teams"
                   ];
                   masApps = {
                     "Logic Pro" = 634148309;

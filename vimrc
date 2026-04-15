@@ -79,6 +79,7 @@ set nowrap
 set ignorecase smartcase
 set tags+=tags
 set incsearch
+set ttimeoutlen=10
 
 " Set where splits appear (which feels more natural)
 set splitbelow

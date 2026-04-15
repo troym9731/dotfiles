@@ -36,3 +36,6 @@ vim.o.splitright = true
 
 vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
+
+vim.o.title = true
+vim.o.titlestring = "%{v:progname} — %{fnamemodify(getcwd(), ':~')}"

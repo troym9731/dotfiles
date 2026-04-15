@@ -24,6 +24,7 @@
       glob: true
       path: atuin/*
       force: true
+    ~/.hammerspoon/init.lua: hammerspoon/init.lua
     ~/.config/ghostty/config: ghostty/config
     ~/.config/ghostty/themes/:
       glob: true
