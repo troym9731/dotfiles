@@ -57,6 +57,14 @@ return {
 
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("html")
+		vim.lsp.config("expert", {
+			root_dir = function(bufnr, on_dir)
+				local root = vim.fs.root(bufnr, { "mix.exs" })
+				if root then
+					on_dir(root)
+				end
+			end,
+		})
 		vim.lsp.enable("expert")
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("jsonls")

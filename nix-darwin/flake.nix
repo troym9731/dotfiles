@@ -30,6 +30,7 @@
           # List packages installed in system profile. To search by name, run:
           # $ nix-env -qaP | grep wget
           environment.systemPackages = [
+            pkgs._1password-cli
             pkgs.alacritty
             pkgs.atuin
             pkgs.bat
@@ -87,7 +88,6 @@
             ];
             casks = [
               "1password"
-              "1password-cli"
               "bettertouchtool"
               "dropbox"
               "firefox"

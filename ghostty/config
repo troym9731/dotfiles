@@ -18,9 +18,12 @@ window-height = 1000000
 window-width = 1000000
 
 # Search entire scrollback history in default text editor
+keybind = ctrl+space>shift+l=goto_window:previous
+keybind = ctrl+space>shift+k=goto_window:next
 keybind = ctrl+space>\=new_split:right
 keybind = ctrl+space>-=new_split:down
 keybind = ctrl+space>l=previous_tab
+keybind = ctrl+space>k=next_tab
 keybind = cmd+ctrl+k=goto_split:top
 keybind = cmd+ctrl+l=goto_split:right
 keybind = cmd+ctrl+j=goto_split:bottom

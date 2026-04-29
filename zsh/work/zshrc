@@ -143,6 +143,20 @@ export ELIXIR_ERL_OPTIONS="-kernel shell_history enabled"
 source ~/.config/.env
 
 ###
+# Helper functions
+###
+
+function ws() {
+  printf "\033]2;ws %s — %s\a" "$*" "${PWD/#$HOME/~}"
+  command ws "$@"
+}
+
+function claude() {
+  printf "\033]2;claude — %s\a" "${PWD/#$HOME/~}"
+  command claude "$@"
+}
+
+###
 # Highlighting (needs to be last)
 ###
 

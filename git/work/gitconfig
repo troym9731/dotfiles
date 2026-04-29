@@ -1,13 +1,27 @@
 [user]
   name = Troy Mullaney
   email = troymullaney@instinct.vet
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJU874AS/TP0/PfqMF7xHY6SDvejhjQPwr1YY5+j/cLq
+
 [push]
   default = simple
+
 [core]
   editor = vim
   ignorecase = true
   excludesfile = /Users/troymullaney/.dotfiles/gitignore
+
 [init]
 	defaultBranch = main
+
 [credential]
 	helper = osxkeychain
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true

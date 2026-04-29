@@ -21,6 +21,8 @@
     "deny": [],
     "additionalDirectories": []
   },
+  "model": "opus[1m]",
   "enabledPlugins": {},
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high"
 }
