@@ -23,6 +23,7 @@ return {
 				"fish",
 				"go",
 				"gomod",
+				"graphql",
 				"heex",
 				"html",
 				"javascript",
