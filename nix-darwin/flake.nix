@@ -38,7 +38,7 @@
             pkgs.claude-code
             pkgs.cloc
             pkgs.codex
-            pkgs.difftastic
+            pkgs.delta
             pkgs.efm-langserver
             pkgs.fd
             pkgs.fish
@@ -47,6 +47,7 @@
             pkgs.gh
             pkgs.git
             pkgs.git-filter-repo
+            pkgs.jujutsu
             pkgs.jq
             (pkgs.llm.withPlugins { llm-anthropic = true; })
             pkgs.mise
@@ -252,6 +253,7 @@
                     "yq"
                   ];
                   casks = [
+                    "claude"
                     "docker-desktop"
                   ];
                 };

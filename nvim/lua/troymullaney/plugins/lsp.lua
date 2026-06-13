@@ -95,12 +95,12 @@ return {
 				languages = {
 					elixir = {
 						{
-							formatCommand = string.format("%s %s", fs.executable("mix"), "format -"),
+							formatCommand = string.format(
+								"MIX_QUIET=1 %s format --stdin-filename ${INPUT} -",
+								fs.executable("mix")
+							),
 							formatStdin = true,
-							rootMarkers = {
-								".formatter.exs",
-								"mix.exs",
-							},
+							rootMarkers = { ".formatter.exs", "mix.exs" },
 						},
 					},
 					go = {

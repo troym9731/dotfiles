@@ -10,6 +10,7 @@
   editor = vim
   ignorecase = true
   excludesfile = /Users/troymullaney/.dotfiles/gitignore
+  pager = delta
 
 [init]
 	defaultBranch = main
@@ -25,3 +26,13 @@
 
 [commit]
   gpgsign = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true  # use n and N to move between diff sections
+  side-by-side = true
+
+[merge]
+  conflictStyle = zdiff3
