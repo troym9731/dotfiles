@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+#
+# Describe the working-copy commit with its Jira ticket prefix.
+# Bails unless a feature/ABC-123 bookmark is in @'s ancestry.
+
+jjd() {
+  local root bookmark ticket parent prefix desc
+
+  root=$(jj root 2>/dev/null) || { print -u2 "jjd: not in a jj repo"; return 1; }
+
+  bookmark=$(jj log -r 'heads(::@ & bookmarks())' --no-graph -T 'bookmarks' 2>/dev/null)
+  ticket=$(printf '%s' "$bookmark" | grep -oE '[A-Z]+-[0-9]+' | head -1)
+  if [[ -z $ticket ]]; then
+    print -u2 "jjd: no feature/ABC-123 bookmark in @'s ancestry — aborting (use 'jj describe' for an unprefixed message)"
+    return 1
+  fi
+
+  prefix="[$ticket] "
+
+  # Optional [PARENT] from the cache file.
+  if [[ -f "$root/.git/jira-parent-cache" ]]; then
+    parent=$(tr -d '[:space:]' < "$root/.git/jira-parent-cache")
+    [[ -n $parent ]] && prefix="[$parent]$prefix"
+  fi
+
+  # Current description of the working-copy commit.
+  desc=$(jj log -r @ --no-graph -T 'description' 2>/dev/null)
+
+  # Only seed if it doesn't already start with [ABC-123].
+  if [[ ! $desc =~ ^\[[A-Z]+-[0-9]+\] ]]; then
+    command jj describe -m "${prefix}${desc}" >/dev/null
+  fi
+
+  command jj describe
+}
+
+jjd "$@"

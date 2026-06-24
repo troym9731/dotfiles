@@ -1,0 +1,129 @@
+#!/bin/sh
+#
+# Create a Jujutsu (jj) feature bookmark.
+#
+# The jj counterpart to `gcfb`. Puts a bookmark that follows our naming
+# conventions on the revision you specify (e.g. `@` or `@-`). It does not
+# create a new change or set a description — run `jj new` yourself first if
+# that's what you want.
+#
+# Prompts the user for a Jira issue using the Jira CLI configuration, then
+# creates the bookmark on the given revision.
+#
+# USAGE:
+#   jjfb <revision>
+#
+# OPTIONS:
+#   -n, --dry-run
+#     Print the bookmark that would be created without mutating the
+#     repository.
+#
+#   Optionally set a DEBUG environment variable to enable tracing.
+#     $ DEBUG=1 jjfb
+#
+
+# -e: Exit immediately on error
+# -u: Treat unset variables as errors
+set -eu
+
+# For debugging via an environment variable
+case "${DEBUG-}" in
+  1 | yes | true) set -x ;;
+esac
+
+# Parse options
+dry_run=false
+revision=""
+for arg in "$@"; do
+  case "$arg" in
+    -n | --dry-run) dry_run=true ;;
+    -*)
+      echo "Error: unknown option '$arg'" >&2
+      exit 1
+      ;;
+    *) revision="$arg" ;;
+  esac
+done
+
+# A revision is required so the caller decides where the bookmark lands.
+if [ -z "$revision" ]; then
+  echo "Error: a revision argument is required (e.g. '@' or '@-')." >&2
+  echo "Usage: jjfb [-n|--dry-run] <revision>" >&2
+  exit 1
+fi
+
+# Ensure dependencies are installed
+. "${DEV_SCRIPTS_DIR}/installers/gum.sh"
+. "${DEV_SCRIPTS_DIR}/installers/jira.sh"
+
+if ! ensure_gum; then
+  echo "Error: Failed to install required tool 'gum'"
+  return 1
+fi
+
+if ! ensure_jira; then
+  echo "Error: Failed to install required tool 'jira'"
+  return 1
+fi
+
+if ! command -v jj >/dev/null 2>&1; then
+  echo "Error: jj is not installed." >&2
+  exit 1
+fi
+
+if ! jj root >/dev/null 2>&1; then
+  echo "Error: not inside a jj repository." >&2
+  exit 1
+fi
+
+if ! command -v jira me >/dev/null 2>&1; then
+  echo "Error: Jira CLI is not configured. Run 'jira init'." >&2
+  exit 1
+fi
+
+# Convert the given string to kebab-case.
+#
+to_kebab_case() {
+  echo "$1" |
+    tr '[:upper:]' '[:lower:]' |
+    sed 's/[^a-z0-9]/-/g' |
+    sed 's/--*/-/g' |
+    sed 's/^-//' |
+    sed 's/-$//'
+}
+
+# Grab all issues ready for dev from Jira and have user select one.
+issues=$(jira issue list \
+  --jql 'resolution IS EMPTY' \
+  --columns key,summary \
+  --plain \
+  --no-headers)
+
+selected_issue=$(echo "$issues" | gum choose)
+
+# Extract Jira issue key and summary.
+key=$(echo "$selected_issue" | awk '{print $1}')
+summary=$(echo "$selected_issue" | awk '{$1=""; print $0}' | sed 's/^ *//' | sed 's/\[[^]]*\] *//')
+title=$(to_kebab_case "$summary")
+
+# Prompt user for bookmark name.
+bookmark_name=$(gum input --placeholder "Enter bookmark name" --value "$title")
+
+# In dry-run mode, print what would happen and stop before mutating the repo.
+if [ "$dry_run" = "true" ]; then
+  echo "── jjfb dry run ────────────────────────────────"
+  echo "would run: jj bookmark create feature/$key-$bookmark_name -r $revision"
+  echo "────────────────────────────────────────────────"
+  exit 0
+fi
+
+# Bookmark the given revision using the `feature/` and Jira issue key prefixes.
+jj bookmark create "feature/$key-$bookmark_name" -r "$revision"
+
+# TODO: Move the Jira ticket to whatever "in progress" status that the Jira
+# board has configured. This can vary by board, so it can't be hard-coded. One
+# approach might be to parse the `~/.config/.jira/.config.yml` file to retrieve
+# the configured board, then look up the correct status names (maybe from
+# another file?).
+#
+# jira issue move "$key" 'new_status'

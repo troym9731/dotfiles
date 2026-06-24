@@ -60,6 +60,7 @@
     ~/.config/starship.toml: starship/starship.toml
     ~/.claude/CLAUDE.md: claude/_CLAUDE.md
     ~/.claude/settings.json: claude/settings.json
+    ~/.claude/keybindings.json: claude/keybindings.json
     ~/.claude/skills/:
       glob: true
       path: claude/skills/*

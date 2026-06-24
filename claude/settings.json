@@ -21,5 +21,6 @@
   "model": "opus[1m]",
   "enabledPlugins": {},
   "alwaysThinkingEnabled": true,
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "tui": "fullscreen"
 }

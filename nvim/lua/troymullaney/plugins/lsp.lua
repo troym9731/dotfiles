@@ -22,7 +22,11 @@ return {
 	config = function()
 		require("mason").setup()
 		require("mason-lspconfig").setup({
+			-- We drive vim.lsp.enable(...) explicitly below; don't let
+			-- mason-lspconfig auto-enable every installed server on top of that.
+			automatic_enable = false,
 			ensure_installed = {
+				"efm",
 				"expert",
 				"gopls",
 				"html",

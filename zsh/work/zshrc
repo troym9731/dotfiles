@@ -14,9 +14,6 @@ export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
 # Zsh Customization
 ###
 
-# Git completions
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-
 # Highlight on tab completion selection
 zstyle ':completion:*' menu select
 
@@ -24,12 +21,11 @@ zstyle ':completion:*' menu select
 # Init Zsh
 ###
 
-# Cache completions aggressively
 autoload -Uz compinit
-if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
-    compinit
+if [[ -n ~/.zcompdump(#qNmh-24) ]]; then
+  compinit -C
 else
-    compinit -C
+  compinit
 fi
 
 ###
@@ -136,7 +132,6 @@ eval "$(starship init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
 
 # Final environment variables
-export WS_GITHUB_TOKEN=$(gh auth token)
 export ELIXIR_ERL_OPTIONS="-kernel shell_history enabled"
 source ~/.config/.env
 
@@ -145,6 +140,8 @@ source ~/.config/.env
 ###
 
 function ws() {
+  : ${WS_GITHUB_TOKEN:=$(gh auth token)}
+  export WS_GITHUB_TOKEN
   printf "\033]2;ws %s — %s\a" "$*" "${PWD/#$HOME/~}"
   command ws "$@"
 }

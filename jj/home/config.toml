@@ -1,0 +1,10 @@
+[user]
+name = "Troy Mullaney"
+email = "troym9731@gmail.com"
+
+[ui]
+pager = "delta"
+diff-formatter = ":git"
+
+[remotes.origin]
+auto-track-bookmarks = "main | master"

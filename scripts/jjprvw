@@ -1,0 +1,54 @@
+#!/bin/sh
+#
+# View the pull request for a Jujutsu (jj) change in the browser.
+#
+# The jj counterpart to `ghprvw` (`gh pr view --web`). Instead of relying on
+# the current git branch (jj keeps git's HEAD detached, so there usually isn't
+# one), it works out the change to view and the bookmark on it, then opens that
+# bookmark's PR.
+#
+# The change is resolved as `@` when the working copy has content, and `@-`
+# otherwise (jj parks an empty change on top after `jj commit`/`jj new`, so the
+# real work is usually at `@-`).
+#
+# USAGE:
+#   jjprvw
+#
+#   Optionally set a DEBUG environment variable to enable tracing.
+#     $ DEBUG=1 jjprvw
+#
+
+# -e: Exit immediately on error
+# -u: Treat unset variables as errors
+set -eu
+
+# For debugging via an environment variable
+case "${DEBUG-}" in
+  1 | yes | true) set -x ;;
+esac
+
+if ! jj root >/dev/null 2>&1; then
+  echo "Error: not inside a jj repository." >&2
+  exit 1
+fi
+
+# Resolve the change to view: the working copy if it has content, otherwise its
+# parent (jj leaves an empty `@` on top after a commit).
+if [ "$(jj log --no-graph -r @ -T empty)" = "true" ]; then
+  target='@-'
+else
+  target='@'
+fi
+
+# Find the bookmark on that change, using the first if there's more than one.
+bookmark=$(jj bookmark list -r "$target" | cut -d: -f1 | head -n1)
+
+if [ -z "$bookmark" ]; then
+  echo "Error: no bookmark on the change to view ($target)." >&2
+  echo "Create one with: jj bookmark set <name> -r $target" >&2
+  exit 1
+fi
+
+# Open the bookmark's PR in the browser. The bookmark is used as the branch,
+# since there's no current git branch to infer.
+gh pr view "$bookmark" --web

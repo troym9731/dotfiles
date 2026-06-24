@@ -73,6 +73,16 @@
 
           homebrew = {
             enable = true;
+            taps = [
+              {
+                name = "dmmulroy/tap";
+                trusted = true;
+              }
+              {
+                name = "neurosnap/tap";
+                trusted = true;
+              }
+            ];
             brews = [
               # Needed for other dependencies
               "coreutils"
@@ -81,9 +91,11 @@
               "openssl@3.5"
               # Standard brews
               "awscli"
+              "dmmulroy/tap/jj-starship"
               "gnu-sed"
               "luarocks"
               "mas"
+              "neurosnap/tap/zmx"
               "reattach-to-user-namespace"
               "sox"
             ];
@@ -95,7 +107,6 @@
               "ghostty"
               "google-chrome"
               "hammerspoon"
-              "kap"
               "raycast"
               "slack"
               "spotify"
@@ -261,6 +272,17 @@
                   enable = true;
                   enableRosetta = true;
                   user = "troymullaney";
+                  # Note: The trust entries are _not_ removed if you remove them from those lists!
+                  # Use the `brew untrust` command to remove a trust entry.
+                  trust = {
+                    formulae = [ ];
+                    casks = [ ];
+                    commands = [ ];
+                    taps = [
+                      "datadog-labs/pack"
+                      "dmmulroy/tap"
+                    ];
+                  };
                 };
               }
             )

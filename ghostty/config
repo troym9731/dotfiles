@@ -7,7 +7,8 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 font-thicken = true
-font-codepoint-map = U+21D0-U+21FF,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D7,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6B7,U+E700-U+E8EF,U+EA60-U+EC1E,U+ED00-U+F2FF,U+EE00-U+EE0B,U+F300-U+F381,U+F400-U+F533,U+F0001-U+F1AF0=Symbols Nerd Font
+font-codepoint-map = U+21D0-U+21FF=Monaco
+font-codepoint-map = U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D7,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6B7,U+E700-U+E8EF,U+EA60-U+EC1E,U+ED00-U+F2FF,U+EE00-U+EE0B,U+F300-U+F381,U+F400-U+F533,U+F0001-U+F1AF0=Symbols Nerd Font
 macos-titlebar-style = tabs
 scrollback-limit = 1000000
 shell-integration-features = no-cursor
@@ -17,7 +18,6 @@ unfocused-split-opacity = 1
 window-height = 1000000
 window-width = 1000000
 
-# Search entire scrollback history in default text editor
 keybind = ctrl+space>shift+l=goto_window:previous
 keybind = ctrl+space>shift+k=goto_window:next
 keybind = ctrl+space>\=new_split:right

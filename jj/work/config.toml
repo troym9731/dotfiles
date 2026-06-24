@@ -1,0 +1,19 @@
+[user]
+name = "Troy Mullaney"
+email = "troymullaney@instinct.vet"
+
+[ui]
+pager = "delta"
+diff-formatter = ":git"
+
+[remotes.origin]
+auto-track-bookmarks = "main | master"
+
+[signing]
+behavior = "drop"
+backend = "ssh"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJU874AS/TP0/PfqMF7xHY6SDvejhjQPwr1YY5+j/cLq"
+backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[git]
+sign-on-push = true

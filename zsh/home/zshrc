@@ -13,9 +13,6 @@ export PATH="$PATH:$HOME/.local/bin"
 # Zsh Customization
 ###
 
-# Git completions
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-
 # Highlight on tab completion selection
 zstyle ':completion:*' menu select
 
@@ -23,7 +20,12 @@ zstyle ':completion:*' menu select
 # Init Zsh
 ###
 
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qNmh-24) ]]; then
+  compinit -C
+else
+  compinit
+fi
 
 ###
 # Theme

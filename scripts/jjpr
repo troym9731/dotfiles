@@ -1,0 +1,264 @@
+#!/bin/sh
+#
+# Create a pull request from a Jujutsu (jj) change.
+#
+# The jj counterpart to `gcpr`. Instead of relying on the current git branch
+# (jj keeps git's HEAD detached, so there usually isn't one), it works out the
+# change to PR, the bookmark on it, and pushes through that bookmark.
+#
+# Prompts the user for the following:
+#
+# 1. Jira issue
+# 2. Base branch
+# 3. Reviewing team (via the editor / template)
+#
+# The change to PR is resolved as `@` when the working copy has content, and
+# `@-` otherwise (jj parks an empty change on top after `jj commit`/`jj new`,
+# so the real work is usually at `@-`).
+#
+# The change must have a bookmark on it, and that bookmark must already be
+# pushed to `origin`. If it isn't, you'll be offered the chance to push, and
+# the flow bails if you decline.
+#
+# The PR body is built from the repository's pull request template (replacing
+# `[ITP-xxxx]` with the selected Jira key) with the change descriptions in the
+# range appended under a `## Commits` heading, then opened in `$EDITOR`.
+#
+# USAGE:
+#   jjpr
+#
+# OPTIONS:
+#   -n, --dry-run
+#     Resolve and print the change, bookmark, base, title and body without
+#     pushing or creating the pull request.
+#
+#   Optionally set a DEBUG environment variable to enable tracing.
+#     $ DEBUG=1 jjpr
+#
+
+# -e: Exit immediately on error
+# -u: Treat unset variables as errors
+set -eu
+
+# For debugging via an environment variable
+case "${DEBUG-}" in
+  1 | yes | true) set -x ;;
+esac
+
+# Parse options
+dry_run=false
+for arg in "$@"; do
+  case "$arg" in
+    -n | --dry-run) dry_run=true ;;
+  esac
+done
+
+# Ensure dependencies are installed
+. "${DEV_SCRIPTS_DIR}/installers/gh.sh"
+. "${DEV_SCRIPTS_DIR}/installers/gum.sh"
+. "${DEV_SCRIPTS_DIR}/installers/jira.sh"
+
+if ! ensure_gh; then
+  echo "Error: Failed to install required tool 'gh'"
+  return 1
+fi
+
+if ! ensure_gum; then
+  echo "Error: Failed to install required tool 'gum'"
+  return 1
+fi
+
+if ! ensure_jira; then
+  echo "Error: Failed to install required tool 'jira'"
+  return 1
+fi
+
+if ! command -v jj >/dev/null 2>&1; then
+  echo "Error: jj is not installed." >&2
+  exit 1
+fi
+
+if ! jj root >/dev/null 2>&1; then
+  echo "Error: not inside a jj repository." >&2
+  exit 1
+fi
+
+if ! command -v jira me >/dev/null 2>&1; then
+  echo "Error: Jira CLI is not configured. Run 'jira init'." >&2
+  exit 1
+fi
+
+# Resolve the change to PR: the working copy if it has content, otherwise its
+# parent (jj leaves an empty `@` on top after a commit).
+if [ "$(jj log --no-graph -r @ -T empty)" = "true" ]; then
+  target='@-'
+else
+  target='@'
+fi
+
+# Find the bookmark(s) on that change.
+bookmarks=$(jj bookmark list -r "$target" | cut -d: -f1)
+
+if [ -z "$bookmarks" ]; then
+  echo "Error: no bookmark on the change to PR ($target)." >&2
+  echo "Create one with: jj bookmark set <name> -r $target" >&2
+  exit 1
+fi
+
+bookmark_count=$(printf '%s\n' "$bookmarks" | grep -c .)
+if [ "$bookmark_count" -gt 1 ]; then
+  bookmark=$(printf '%s\n' "$bookmarks" |
+    gum choose --header "Multiple bookmarks on $target. Choose one: ")
+else
+  bookmark="$bookmarks"
+fi
+
+# Ensure the bookmark is pushed to origin and in sync with the local copy.
+local_commit=$(jj log --no-graph -r "$bookmark" -T 'commit_id')
+remote_commit=$(jj log --no-graph -r "${bookmark}@origin" -T 'commit_id' 2>/dev/null || true)
+
+if [ "$remote_commit" != "$local_commit" ]; then
+  if [ "$dry_run" = "true" ]; then
+    push_status="NOT pushed / out of date (would prompt to push)"
+  elif gum confirm "Bookmark '$bookmark' isn't pushed (or is out of date). Push now?"; then
+    jj git push --bookmark "$bookmark"
+    push_status="pushed"
+  else
+    echo "Aborting. Push first with: jj git push --bookmark $bookmark" >&2
+    exit 1
+  fi
+else
+  push_status="up to date on origin"
+fi
+
+# Grab all issues assigned to the user currently in dev from Jira and have
+# them select one.
+issues=$(jira issue list \
+  --assignee "$(jira me)" \
+  --jql 'resolution IS EMPTY' \
+  --columns key,summary \
+  --plain \
+  --no-headers)
+
+selected_issue=$(echo "$issues" | gum choose)
+
+# Extract Jira issue key.
+key=$(echo "$selected_issue" | awk '{print $1}')
+
+# Use the target change's description for the PR title, stripping any leading
+# issue key prefix(es) to avoid duplication in the title.
+raw_title=$(jj log --no-graph -r "$target" -T 'description.first_line()')
+title=$(echo "$raw_title" | gsed 's/^\(\[[A-Z]\+-[0-9]\+\]\)\+[[:space:]]*//')
+
+# Choose a base branch, defaulting to the repository's default branch.
+default_base=$(gh repo view --json defaultBranchRef --jq '.defaultBranchRef.name' 2>/dev/null || echo "main")
+base_branch=$(
+  {
+    echo "$default_base"
+    git branch -r --format='%(refname:lstrip=3)' 2>/dev/null |
+      grep -vx 'HEAD' | grep -vx "$default_base"
+  } | gum choose --header "Choose a base branch: "
+)
+
+# Get all the commit descriptions in this PR's range, preferring the remote
+# copy of the base branch when it exists.
+if jj log --no-graph -r "${base_branch}@origin" -T 'commit_id' >/dev/null 2>&1; then
+  base_rev="${base_branch}@origin"
+else
+  base_rev="$base_branch"
+fi
+commits=$(jj log --no-graph --reversed -r "${base_rev}..${target}" -T 'description ++ "\n"')
+
+# Extract parent issue if the title has [PARENT][CHILD] format.
+parent_issue=""
+if echo "$raw_title" | grep -q '^\[[A-Z]\+-[0-9]\+\]\[[A-Z]\+-[0-9]\+\]'; then
+  parent_issue=$(echo "$raw_title" | gsed 's/^\[\([A-Z]\+-[0-9]\+\)\].*/\1/')
+  if [ "$parent_issue" = "$key" ]; then
+    parent_issue=""
+  fi
+fi
+
+# Build the PR body
+template_file=".github/pull_request_template.md"
+
+default_template="# [ITP-xxxx]
+## Purpose
+
+## Changes
+
+## Concerns
+
+## Deploy Considerations
+"
+
+if [ -f "$template_file" ]; then
+  template_content=$(cat "$template_file")
+else
+  template_content="$default_template"
+fi
+
+processed_body=$(
+  # Add "Part of [parent_issue]" if parent issue exists
+  if [ -n "$parent_issue" ]; then
+    echo "Part of [$parent_issue]"
+    echo ""
+  fi
+  echo "$template_content" | sed "s/\[ITP-xxxx\]/[$key]/g"
+  echo ""
+  echo "## Commits"
+  printf '%s\n' "$commits"
+)
+
+tmpfile=$(mktemp /tmp/pr_body.XXXXXX) || {
+  echo "Failed to create temp file"
+  exit 1
+}
+echo "$processed_body" >"$tmpfile"
+
+# Construct PR title with parent issue if available
+if [ -n "$parent_issue" ]; then
+  pr_title="[$parent_issue][$key] $title"
+else
+  pr_title="[$key] $title"
+fi
+
+# In dry-run mode, print everything we resolved and stop before touching gh.
+if [ "$dry_run" = "true" ]; then
+  echo "── jjpr dry run ────────────────────────────────"
+  echo "change (target): $target"
+  echo "bookmark (head): $bookmark"
+  echo "push status:     $push_status"
+  echo "base branch:     $base_branch"
+  echo "commit range:    ${base_rev}..${target}"
+  echo "PR title:        $pr_title"
+  echo "── body ────────────────────────────────────────"
+  cat "$tmpfile"
+  echo "────────────────────────────────────────────────"
+  rm -f "$tmpfile"
+  exit 0
+fi
+
+# Ask if user wants to create a draft PR
+is_draft=$(gum confirm "Create as draft pull request?" && echo "true" || echo "false")
+
+# Build the gh pr create command with optional draft flag. The head is the jj
+# bookmark, since there's no current git branch to infer.
+if [ "$is_draft" = "true" ]; then
+  gh pr create \
+    --head "$bookmark" \
+    --base "$base_branch" \
+    --title "$pr_title" \
+    --body-file "$tmpfile" \
+    --draft \
+    --editor
+else
+  gh pr create \
+    --head "$bookmark" \
+    --base "$base_branch" \
+    --title "$pr_title" \
+    --body-file "$tmpfile" \
+    --editor
+fi
+
+# Clean up the temporary file
+rm -f "$tmpfile"

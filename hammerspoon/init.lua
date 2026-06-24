@@ -273,17 +273,16 @@ end
 local ghosttyModal = hs.hotkey.modal.new()
 ghosttyModal:bind({ "cmd" }, "p", showGhosttyChooser)
 
-hs.application.watcher
-	.new(function(name, event, app)
-		if name ~= "Ghostty" then return end
-		if event == hs.application.watcher.activated then
-			cachedGhostty = app
-			ghosttyModal:enter()
-		elseif event == hs.application.watcher.deactivated then
-			ghosttyModal:exit()
-		end
-	end)
-	:start()
+ghosttyWatcher = hs.application.watcher.new(function(name, event, app)
+	if name ~= "Ghostty" then return end
+	if event == hs.application.watcher.activated then
+		cachedGhostty = app
+		ghosttyModal:enter()
+	elseif event == hs.application.watcher.deactivated then
+		ghosttyModal:exit()
+	end
+end)
+ghosttyWatcher:start()
 
 -- Enter modal immediately if Ghostty is already focused on load
 local frontApp = hs.application.frontmostApplication()

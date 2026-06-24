@@ -9,6 +9,7 @@
       path: fish/work/config.fish
       force: true
     ~/.gitconfig: git/work/gitconfig
+    ~/.config/jj/config.toml: jj/work/config.toml
     ~/.codex/config.toml: codex/config.toml
     ~/.config/mise/config.toml: mise/work/config.toml
     ~/.aws/config: aws/work/config
