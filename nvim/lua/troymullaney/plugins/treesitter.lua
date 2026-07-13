@@ -16,6 +16,7 @@ return {
 			-- Excludes parsers bundled with nix-wrapped neovim: c, lua, markdown,
 			-- markdown_inline, query, vim, vimdoc
 			require("nvim-treesitter").install({
+				"bash",
 				"dockerfile",
 				"eex",
 				"elixir",
@@ -36,6 +37,7 @@ return {
 				"toml",
 				"typescript",
 				"yaml",
+				"zsh",
 			})
 		end,
 	},

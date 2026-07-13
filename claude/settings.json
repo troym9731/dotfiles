@@ -18,9 +18,9 @@
     "deny": [],
     "additionalDirectories": []
   },
-  "model": "opus[1m]",
   "enabledPlugins": {},
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "model": "opus[1m]"
 }

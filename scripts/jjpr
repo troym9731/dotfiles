@@ -140,7 +140,11 @@ issues=$(jira issue list \
   --plain \
   --no-headers)
 
-selected_issue=$(echo "$issues" | gum choose)
+selected_issue=$(echo "$issues" |
+  gum filter \
+    --header "Choose a Jira issue: " \
+    --placeholder "Type to search issues..." \
+    --height 20)
 
 # Extract Jira issue key.
 key=$(echo "$selected_issue" | awk '{print $1}')

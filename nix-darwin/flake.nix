@@ -32,6 +32,7 @@
           environment.systemPackages = [
             pkgs._1password-cli
             pkgs.alacritty
+            pkgs.amber-lang
             pkgs.atuin
             pkgs.bat
             pkgs.bottom
@@ -244,9 +245,6 @@
                   "/Applications/Ghostty.app"
                   "/Applications/Slack.app"
                 ];
-                environment.systemPackages = [
-                  pkgs.kubernetes-helm
-                ];
                 homebrew = {
                   taps = [
                     "datadog-labs/pack"
@@ -260,7 +258,6 @@
                     "kubectl"
                     "mkcert"
                     "postgresql@18"
-                    "repomix"
                     "yq"
                   ];
                   casks = [

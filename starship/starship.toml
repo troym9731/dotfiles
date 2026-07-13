@@ -7,6 +7,7 @@ format = """
 ${env_var.ZMX_SESSION}\
 $directory\
 ${custom.jj}\
+${custom.vcs}\
 $fill\
 $cmd_duration\
 $kubernetes\
@@ -19,8 +20,15 @@ style = "blue"
 truncate_to_repo = false
 
 [custom.jj]
+disabled = true
 when = "jj-starship detect"
 shell = ["jj-starship"]
+format = "$output "
+
+[custom.vcs]
+disabled = false
+when = "/Users/troymullaney/.dotfiles/starship/vcs-prompt/target/release/vcs-prompt detect"
+command = "/Users/troymullaney/.dotfiles/starship/vcs-prompt/target/release/vcs-prompt render"
 format = "$output "
 
 [git_branch]

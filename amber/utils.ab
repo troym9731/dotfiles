@@ -1,0 +1,11 @@
+import { is_command, echo_error } from "std/env"
+
+pub fun ensure(command: Text) {
+    if not is_command(command) {
+        echo_error("Error: required command '{command}' not found")
+    }
+}
+
+fun fun to_kebab_case(string: Text) {
+
+}

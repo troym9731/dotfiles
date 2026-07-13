@@ -1,0 +1,20 @@
+[package]
+name = "vcs-prompt"
+version = "0.1.0"
+edition = "2021"
+description = "Starship prompt module for jj and git repositories"
+
+[[bin]]
+name = "vcs-prompt"
+path = "src/main.rs"
+
+[dependencies]
+jj-lib = "=0.42.0"
+pollster = "0.3"
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
+panic = "abort"
+codegen-units = 1

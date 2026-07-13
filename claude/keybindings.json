@@ -5,10 +5,10 @@
     {
       "context": "Scroll",
       "bindings": {
-        "ctrl+shift+u": "scroll:halfPageUp",
-        "ctrl+shift+d": "scroll:halfPageDown",
-        "ctrl+shift+y": "scroll:lineUp",
-        "ctrl+shift+e": "scroll:lineDown",
+        "ctrl+u": "scroll:halfPageUp",
+        "ctrl+d": "scroll:halfPageDown",
+        "ctrl+y": "scroll:lineUp",
+        "ctrl+e": "scroll:lineDown",
         "ctrl+b": "scroll:bottom"
       }
     },

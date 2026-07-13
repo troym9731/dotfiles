@@ -1,0 +1,63 @@
+import { ensure } from "../utils.ab"
+import { starts_with } from "std/text"
+import { echo_error } from "std/env"
+
+fun has_flag(args: [Text], name: Text): Bool {
+    for arg in args {
+        if arg == name {
+            return true
+        }
+    }
+    return false
+}
+
+fun positionals(args: [Text]): [Text] {
+    let result = [Text]
+    for arg in args {
+        if not starts_with(arg, "-") {
+            result += [arg]
+        }
+    }
+    return result
+}
+
+main (args) {
+    ensure("fzf")
+    ensure("jira")
+
+    let dry_run = has_flag(arg, "--dry-run")
+    let pos = positionals(args)
+
+    if len(pos) == 0 {
+        echo_error("usage: dfm <install|link|clean|update> [env] [--dry-run]")
+    }
+
+    let cmd = pos[0]
+    let env = get_env(pos)
+    if {
+        cmd == "install" {
+            cmd_install(env, dry_run)
+        }
+        cmd == "link" {
+            cmd_link(env, dry_run)
+        }
+        cmd == "clean" {
+            cmd_clean(env, dry_run)
+        }
+        cmd == "update" {
+            cmd_update(env, dry_run)
+        }
+        else {
+            echo_error("unknown command: {cmd}")
+        }
+    }
+}
+
+fun get_env(pos: [Text], dry_run: Bool) {
+    let env = ""
+    if len(pos) >= 2 {
+        env = pos[1]
+    } else {
+        env = resolve_saved_env()
+    }
+}
