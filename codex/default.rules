@@ -1,0 +1,7 @@
+prefix_rule(pattern=["gh", "pr", "view"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "diff"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "list"], decision="allow")
+prefix_rule(pattern=["jj", "status"], decision="allow")
+prefix_rule(pattern=["jj", "diff"], decision="allow")
+prefix_rule(pattern=["jj", "log"], decision="allow")
+prefix_rule(pattern=["jj", "show"], decision="allow")

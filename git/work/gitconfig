@@ -9,7 +9,7 @@
 [core]
   editor = vim
   ignorecase = true
-  excludesfile = /Users/troymullaney/.dotfiles/gitignore
+  excludesfile = ~/.dotfiles/gitignore
   pager = delta
 
 [init]

@@ -8,6 +8,7 @@ diff-formatter = ":git"
 
 [remotes.origin]
 auto-track-bookmarks = "main | master"
+fetch-bookmarks = "~*_deploy"
 
 [signing]
 behavior = "drop"

@@ -32,12 +32,12 @@
           environment.systemPackages = [
             pkgs._1password-cli
             pkgs.alacritty
+            pkgs.amber-lang
             pkgs.atuin
             pkgs.bat
             pkgs.bottom
             pkgs.claude-code
             pkgs.cloc
-            pkgs.codex
             pkgs.delta
             pkgs.efm-langserver
             pkgs.fd
@@ -102,11 +102,11 @@
             casks = [
               "1password"
               "bettertouchtool"
+              "codex"
               "dropbox"
               "firefox"
               "ghostty"
               "google-chrome"
-              "hammerspoon"
               "raycast"
               "slack"
               "spotify"
@@ -244,9 +244,6 @@
                   "/Applications/Ghostty.app"
                   "/Applications/Slack.app"
                 ];
-                environment.systemPackages = [
-                  pkgs.kubernetes-helm
-                ];
                 homebrew = {
                   taps = [
                     "datadog-labs/pack"
@@ -260,7 +257,7 @@
                     "kubectl"
                     "mkcert"
                     "postgresql@18"
-                    "repomix"
+                    "snowflake-cli"
                     "yq"
                   ];
                   casks = [
@@ -280,7 +277,6 @@
                     commands = [ ];
                     taps = [
                       "datadog-labs/pack"
-                      "dmmulroy/tap"
                     ];
                   };
                 };

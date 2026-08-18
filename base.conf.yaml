@@ -24,7 +24,6 @@
       glob: true
       path: atuin/*
       force: true
-    ~/.hammerspoon/init.lua: hammerspoon/init.lua
     ~/.config/ghostty/config: ghostty/config
     ~/.config/ghostty/themes/:
       glob: true
@@ -49,6 +48,7 @@
     - [source ~/.zshrc, "Sourcing zshrc"]
     - [mise install, "Installing mise languages"]
     - [source ~/.zshrc, "Sourcing zshrc"]
+    - [mise exec -- cargo build --release --manifest-path ~/.dotfiles/starship/vcs-prompt/Cargo.toml, "Building vcs-prompt"]
     - [~/.dotfiles/vim-plug/install, "Installing vim-plug"]
     - [mkdir -p ~/.vim/backup, "Creating backup vim directory"]
 

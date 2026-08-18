@@ -16,11 +16,31 @@
       "Read(~/instinct/**)"
     ],
     "deny": [],
+    "defaultMode": "default",
     "additionalDirectories": []
   },
   "model": "opus[1m]",
   "enabledPlugins": {},
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
-  "tui": "fullscreen"
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "tui": "fullscreen",
+  "autoMemoryEnabled": true,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/sh -c 'rex __internal session-start --agent claude 2>/dev/null || true'",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
 }

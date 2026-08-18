@@ -26,6 +26,7 @@ esac
 # Ensure dependencies are installed
 . "${DEV_SCRIPTS_DIR}/installers/gum.sh"
 . "${DEV_SCRIPTS_DIR}/installers/jira.sh"
+. "$HOME/.dotfiles/lib/jira.sh"
 
 if ! ensure_gum; then
   echo "Error: Failed to install required tool 'gum'"
@@ -53,12 +54,9 @@ to_kebab_case() {
     sed 's/-$//'
 }
 
-# Grab all issues ready for dev from Jira and have user select one.
-issues=$(jira issue list \
-  --jql 'resolution IS EMPTY' \
-  --columns key,summary \
-  --plain \
-  --no-headers)
+# Grab all unresolved issues assigned to the user across every project and
+# have them select one.
+issues=$(jira_assigned_issues)
 
 selected_issue=$(echo "$issues" | gum choose)
 
