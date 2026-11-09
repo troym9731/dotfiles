@@ -49,7 +49,6 @@
             pkgs.git-filter-repo
             pkgs.jujutsu
             pkgs.jq
-            (pkgs.llm.withPlugins { llm-anthropic = true; })
             pkgs.mise
             pkgs.neovim
             pkgs.nixfmt
@@ -57,6 +56,7 @@
             pkgs.pgcli
             pkgs.ripgrep
             pkgs.starship
+            pkgs.tailscale
             pkgs.tldr
             pkgs.tmux
             pkgs.tree
@@ -114,7 +114,7 @@
             ];
             onActivation = {
               cleanup = "zap";
-              autoUpdate = true;
+              autoUpdate = false;
               upgrade = true;
             };
           };
@@ -130,6 +130,8 @@
             enableCompletion = false;
             promptInit = "";
           };
+
+          services.tailscale.enable = true;
 
           system.keyboard = {
             enableKeyMapping = true;
